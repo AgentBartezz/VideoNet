@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<html lang="pl">
+	<head>
+		<script src="{{ asset('js/jquery.js') }}"></script>
+		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src="{{ asset('js/script.js') }}"></script>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="shortcut icon" href="favicon.ico"/>
+		<link rel="stylesheet" href="{{ asset('icons.css') }}"/>
+		<link rel="stylesheet" href="{{ asset('style.css') }}"/>
+		<link rel="stylesheet" href="{{ asset('style_b.css') }}"/>
+		<!--[if lte IE 8]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			
+		<![endif]-->
+		
+		<title>VideoNet | Start</title>
+	</head>
+	<body>
+		<!--[if lte IE 8]>
+		
+		<script type="text/javascript">
+			function e() {
+				var ie = document.getElementById("ie-warning");
+				document.body.removeChild(ie);
+			}
+		</script>
+			<div id="ie-warning"><div><p>Wykryliśmy że korzystasz z przestarzałej przeglądarki Internet Explorer 8 lub niższej, co może spowodować problemy w prawidłowym wyświetlaniu naszej strony. Radzimy pobrać najnowszą wersję przeglądarki. Pozostając przy obecnej upewnij się, że masz wyłączony tryb zgodności.<br>Dziękujemy i życzymy miłego przeglądania.</p><button type="button" onclick="e();">ZAMKNIJ</button> </div></div>
+		<![endif]-->
+		<header id="superhit">
+			<div id="superhit-inner">
+				<a rel="home" href="">
+					<img src="{{ asset('images/banner.jpg') }}" alt="Films"/>
+				</a>
+			</div>
+		</header>
+		<div id="under-bars">
+		<header role="banner" id="bars" class="relative expanded-1">
+			<div id="top-bar" class="expanded-2">
+				<div id="top-bar-inner">
+					<div id="toggle-menu"><i class=" glyphicon glyphicon-th-list" aria-hidden="true"></i></div>
+					<img id="logo" src="{{ asset('images/logo.png') }}" alt="logoo"/>
+					<nav id="menu" role="navigation" class="collapsed-3">
+						<h6>Nawigacja</h6>
+						<ul class="menu-inner">
+							<li class="menu-item{{ start_active }}"><a href="index" class="expanded-2" title="start"><i class="glyphicon glyphicon-home" aria-hidden="true"></i><span>START</span></a></li>
+							<li class="menu-item{{ filmy_active }}"><a href="films" class="expanded-2" title="filmy"><i class="glyphicon glyphicon-film" aria-hidden="true"></i><span>FILMY</span></a></li>
+							<li class="menu-item{{ forum_active }}"><a href="forum" class="expanded-2" title="forum"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span>FORUM</span></a></li>
+							<li class="menu-item{{ cos_active }}"><a href="a" class="expanded-2" title="a"><i class="glyphicon glyphicon-asterisk" aria-hidden="true"></i><span>COŚŚ</span></a></li>
+							<li class="menu-item{{ kontakt_active }}"><a href="kontakt" class="expanded-2" title="kontakt"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><span>KONTAKT</span></a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div id="bottom-bar">
+				<div id="bottom-bar-inner">
+					<div id="search-form">
+						<div id="icon-search-outer">
+							<i class="glyphicon glyphicon-search icon-search" aria-hidden="true"></i>
+						</div>
+						<input placeholder="Wyszukaj film..." type="text" id="search-input"/>
+						<button id="search-btn">ZNAJDŹ</button>
+						<div id="search-results-outer" style="display:none">
+						
+						</div>
+					</div>
+					<div id="account-options">
+						{% include 'GrupaVideoNetBundle::account.options.html.twig' %}
+					</div>
+				</div>
+			</div>
+		</header>
+		</div>
+		<div id="overlay" style="display:none">
+			<section id="account-popup" style="display:none">
+				<header class="popup-header">
+					<h2 class="popup-header-inner">LOGOWANIE<h2>
+					<button class="close-popup">X</button>
+				</header>
+				<section id="account-popup-options">
+					<button class="account-popup-option popup-option-active" data-target="login-popup-form">LOGOWANIE</button>
+					<button class="account-popup-option" data-target="fastreg-popup-form">SZYBKA REJESTRACJA</button>
+					<button class="account-popup-option" data-target="passw-popup-form">PRZYPOMNIJ HASŁO</button>
+				</section>
+				<div id="popup-right-box">
+					<section id="login-popup-form" class="absolute">
+						<div id="user-login-icon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></div>	
+						<form id="login-popup-form-inner" action="{{ path("fos_user_security_check") }}" method="post">
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+							<label for="username">Nazwa użytkownika</label>
+							<input type="text" id="username" name="_username" required="required" />
+							<label for="password">Hasło</label>
+							<input type="password" id="password" name="_password" required="required" />
+							<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+							<label for="remember_me" style="display:inline-block; width:auto; padding-left:5px; ">Zapamiętaj moje dane</label>
+							<input type="submit" id="_submit" name="_submit" value="ZALOGUJ SIĘ" />
+						</form>
+					</section>
+					<section id="fastreg-popup-form" class="absolute" style="display:none">
+						rejestracja
+					</section>
+					
+					<section id="passw-popup-form" class="absolute" style="display:none">
+						hasełko
+					</section>
+				</div>
+			</section>
+		</div>
+		<main id ="wrapper" role="main">
+			<div id="container">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</main>
+		<footer role="contentinfo" id="footer">
+			<section id="footer-wrapper">
+				<h6>Stopka</h6>
+				<p id="footer-content">
+	
+				</p>
+			</section>
+		</footer>
+	</body>
+</html>
+

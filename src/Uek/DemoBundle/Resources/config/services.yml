@@ -1,0 +1,7 @@
+services:
+#    uek_demo.example:
+#        class: Uek\DemoBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    bh_name_provider:
+        class: Uek\Components\Name
+        arguments: [@session]

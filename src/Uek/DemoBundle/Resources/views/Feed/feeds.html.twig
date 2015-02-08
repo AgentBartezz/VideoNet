@@ -1,0 +1,28 @@
+{% extends 'UekDemoBundle::layout.html.twig' %}
+
+{% block content %}
+	<h1>Hello {{ name }}</h1>
+	<ul class="list-group">
+	{% for feed in feeds %}
+		<li class="list-group-item">
+			<div class="row">
+				<div class="col-md-4">
+					<img src="{{ feed.picture }} " class="img-thumbnail"/>
+				</div>
+				<div class="col-md-7">
+					<div class="row">
+						<p>
+							{{ feed.about }}
+						</p>
+					</div>
+					<div class="row">
+						{% for item in feed.tags %}
+							<button type="button" class="btn btn-danger">{{ item }}</button>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</li>
+	{% endfor %}
+	</ul>
+{% endblock %}

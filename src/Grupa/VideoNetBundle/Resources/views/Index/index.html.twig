@@ -1,0 +1,213 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = ' active' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+
+{% block content %}
+
+<div id="sliders-container">
+	<section id="slider-row1">
+		<header class="box-header"><h3 class="box-header-content">NOWOŚCI</h3></header>
+		<div id="slider-news">
+			<button id="news-prev" data-slide="9"><i class="glyphicon glyphicon-chevron-left" aria-hidden="true"></i></button>
+			<div id="slider-news-inner">
+				<div id="slider-news-preview">
+					<a class="slider-news-link" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i1.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i2.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i3.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i4.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i5.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i6.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i7.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i8.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i9.jpg') }}"/>
+					</a>
+					<a class="slider-news-link" style="display:none" href="#">
+						<img class="slider-news-image" src="{{ asset('images/news/i10.jpg') }}"/>
+					</a>
+				</div>
+				<div id="slider-news-jumpers">
+					<button class="slider-news-jumper" disabled="disabled"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+					<button class="slider-news-jumper"></button>
+				</div>
+			</div>
+			<button id="news-next" data-slide="1"><i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i></button>
+		</div>
+	</section>
+	<div id="sliders-row2">
+		<section id="slider-hits-outer">
+			<header class="box-header"><h3 class="box-header-content">HITY</h3></header>
+			<div id="slider-hits">
+				<button id="hits-prev" data-slide="9">PR</button>
+				<div id="slider-hits-inner">
+					<div id="slider-hits-preview">
+						<a class="slider-hits-link" href="#">
+							<img class="slider-hits-image" src="{{ asset('images/news/i1.jpg') }}"/>
+						</a>
+						<a class="slider-hits-link" style="display:none" href="#">
+							<img class="slider-hits-image" src="{{ asset('images/news/i2.jpg') }}"/>
+						</a>
+						<a class="slider-hits-link" style="display:none" href="#">
+							<img class="slider-hits-image" src="{{ asset('images/news/i3.jpg') }}"/>
+						</a>
+						<a class="slider-hits-link" style="display:none" href="#">
+							<img class="slider-hits-image" src="{{ asset('images/news/i4.jpg') }}"/>
+						</a>
+						<a class="slider-hits-link" style="display:none" href="#">
+							<img class="slider-hits-image" src="{{ asset('images/news/i5.jpg') }}"/>
+						</a>
+					</div>
+					<div id="slider-hits-jumpers">
+						<button class="slider-hits-jumper" disabled="disabled"></button>
+						<button class="slider-hits-jumper"></button>
+						<button class="slider-hits-jumper"></button>
+						<button class="slider-hits-jumper"></button>
+						<button class="slider-hits-jumper"></button>
+					</div>
+				</div>
+				<button id="hits-next" data-slide="1">NE</button>
+			</div>
+		</section>
+		<section id="slider-top-outer">
+			<header class="box-header"><h3 class="box-header-content">NAJWYŻEJ OCENIANE</h3></header>
+			<div id="slider-top">
+				<button id="top-prev" data-slide="9">PR</button>
+				<div id="slider-top-inner">
+					<div id="slider-top-preview">
+						<a class="slider-top-link" href="#">
+							<img class="slider-top-image" src="{{ asset('images/news/i1.jpg') }}"/>
+						</a>
+						<a class="slider-top-link" style="display:none" href="#">
+							<img class="slider-top-image" src="{{ asset('images/news/i2.jpg') }}"/>
+						</a>
+						<a class="slider-top-link" style="display:none" href="#">
+							<img class="slider-top-image" src="{{ asset('images/news/i3.jpg') }}"/>
+						</a>
+						<a class="slider-top-link" style="display:none" href="#">
+							<img class="slider-top-image" src="{{ asset('images/news/i4.jpg') }}"/>
+						</a>
+						<a class="slider-top-link" style="display:none" href="#">
+							<img class="slider-top-image" src="{{ asset('images/news/i5.jpg') }}"/>
+						</a>
+					</div>
+					<div id="slider-top-jumpers">
+						<button class="slider-top-jumper" disabled="disabled"></button>
+						<button class="slider-top-jumper"></button>
+						<button class="slider-top-jumper"></button>
+						<button class="slider-top-jumper"></button>
+						<button class="slider-top-jumper"></button>
+					</div>
+				</div>
+				<button id="top-next" data-slide="1">NE</button>
+			</div>
+		</section>
+	</div>
+	<section id="slider-row3">
+		<header class="box-header"><h3 class="box-header-content">NAJNOWSZE ZWIASTUNY</h3></header>
+		<article id="slider-trailers">
+			<section id="trailers-container">
+				<video class="trailer-player" width="100%" height="100%" controls>
+					<source class="trailer-player-source" src="{{ trailers.trailer1 }}" type="video/mp4">
+					Twoja przeglądarka nie obłsuguje tego odtwarzacza.
+				</video>
+			</section>
+			<section id="trailers-right-box">
+				<div id="trailers-jumpers">
+					<article class="jump-to-trailer selected" data-src="{{ trailers.trailer1 }}">21-01-2015<br>Interstellar (zwiastun 2)</article>
+					<article class="jump-to-trailer" data-src="{{ trailers.trailer2 }}">21-12-2014<br>Spy (zwiastun 3)</article>
+					<article class="jump-to-trailer" data-src="{{ trailers.trailer3 }}">20-12-2014<br>Hobbit - Bitwa pięciu armii (zwiastun 3)</article>
+					<article class="jump-to-trailer" data-src="{{ trailers.trailer4 }}">19-12-2014<br>Uprowadzona 3 (zwiastun 1)</article>
+				</div>
+				<footer id="trailers-footer"><a href="films/trailers" id="trailers-footer-content">ZOBACZ WIĘCEJ...</a></footer>
+			</section>
+		</article>
+	</section>
+	<aside id="questionnaire-box">
+		<header class="box-header"><h3 class="box-header-content ta-right">ANKIETA</h3></header>
+		<div id="questionnaire-inner">
+		
+		</div>
+	</aside>
+</div>
+<aside id="last-posts-forum">
+	<header class="box-header"><h3 class="box-header-content">OSTATNIE POSTY</h3></header>
+	<div id="forums-jumpers">
+		<div class="last-posts-column">
+			<article class="jump-to-forum">
+				<div id="post-info">
+					<p id="post-info-top"><span id="post-info-author">adad<span class="post-info-time">21-12-2014</span></p>
+					<p class="post-info-short-content">qdqdqqwdqdqdwqdqdqd</p>
+					<a class="post-info-forum-name" href="#">Napisany w: </a>
+				</div>
+			</article>
+			<article class="jump-to-forum">
+				<div id="post-info">
+					<p id="post-info-top"><span id="post-info-author">adad<span class="post-info-time">21-12-2014</span></p>
+					<p class="post-info-short-content">qdqdqqwdqdqdwqdqdqd</p>
+					<a class="post-info-forum-name" href="#">Napisany w: </a>
+				</div>
+			</article>
+		</div>
+		<div class="last-posts-column-center">
+			<article class="jump-to-forum">
+				<div id="post-info">
+					<p id="post-info-top"><span id="post-info-author">adad<span class="post-info-time">21-12-2014</span></p>
+					<p class="post-info-short-content">qdqdqqwdqdqdwqdqdqd</p>
+					<a class="post-info-forum-name" href="#">Napisany w: </a>
+				</div>
+			</article>
+			<article class="jump-to-forum">
+				<div id="post-info">
+					<p id="post-info-top"><span id="post-info-author">adad<span class="post-info-time">21-12-2014</span></p>
+					<p class="post-info-short-content">qdqdqqwdqdqdwqdqdqd</p>
+					<a class="post-info-forum-name" href="#">Napisany w: </a>
+				</div>
+			</article>
+		</div>
+		<div class="last-posts-column">
+			<article class="jump-to-forum">
+				<div id="post-info">
+					<p id="post-info-top"><span id="post-info-author">adad<span class="post-info-time">21-12-2014</span></p>
+					<p class="post-info-short-content">qdqdqqwdqdqdwqdqdqd</p>
+					<a class="post-info-forum-name" href="#">Napisany w: </a>
+				</div>
+			</article>
+			<article class="jump-to-forum">
+				<div id="post-info">
+					<p id="post-info-top"><span id="post-info-author">adad<span class="post-info-time">21-12-2014</span></p>
+					<p class="post-info-short-content">qdqdqqwdqdqdwqdqdqd</p>
+					<a class="post-info-forum-name" href="#">Napisany w: </a>
+				</div>
+			</article>
+		</div>
+	</div>
+	<footer id="last-posts-footer"><a href="forum" id="last-posts-footer-content">ZOBACZ WIĘCEJ...</a></footer>
+</aside>
+{% endblock %}

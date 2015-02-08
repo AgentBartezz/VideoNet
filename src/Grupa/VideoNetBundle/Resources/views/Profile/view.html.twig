@@ -1,0 +1,9 @@
+{{ user.username }}{% if is_granted('ROLE_USER') %}
+    <p>Username: {{ user.username }}</p>
+{% endif %}
+
+	{{ user.id }}
+
+{% for rolek in user.roles %}
+    {{ rolek }}
+{% endfor %}

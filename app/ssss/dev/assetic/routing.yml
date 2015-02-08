@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /home/studenci/r12/s176041/public_html/app/config/routing_dev.yml

@@ -1,0 +1,26 @@
+<h1>dodawanie Feeda</h1>
+<nav>
+	<a 
+		href="{{ path('fos_user_registration_register') }}"
+	>
+		Rejestracja
+	</a>
+	<a 
+		href="{{ path('uek_demo_feed_create') }}"
+	>
+		self
+	</a>
+	
+	<a 
+		href="{{ path('uek_demo_homepage', {name: 'Jakub'}) }}"
+	>
+		Hello
+	</a>
+
+</nav>
+
+<h3>Czessc {{ name }} moze cos napiszesz? </h3>
+<form method="POST">sadasd
+	{{ form_row(form) }}
+	<button type="submit">Wyslij</button>
+</form>

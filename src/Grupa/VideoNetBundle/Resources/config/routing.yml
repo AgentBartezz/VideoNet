@@ -1,0 +1,33 @@
+grupa_video_net_homepage:
+    path:     /
+    defaults: { _controller: GrupaVideoNetBundle:Index:index }
+
+grupa_video_net_index:
+    path:     /index
+    defaults: { _controller: GrupaVideoNetBundle:Index:index }
+
+grupa_video_net_contact:
+    path:     /kontakt
+    defaults: { _controller: GrupaVideoNetBundle:Contact:contact }
+
+grupa_video_net_films:
+    path:     /films
+    defaults: { _controller: GrupaVideoNetBundle:Films:filmsIndex }
+
+grupa_video_net_films_view:
+    path:     /films/view/{id}
+    defaults: { _controller: GrupaVideoNetBundle:Films:filmsView }
+
+grupa_video_net_forum:
+    path:     /forum
+    defaults: { _controller: GrupaVideoNetBundle:Forum:forumIndex }
+
+grupa_video_net_forum_view:
+    path:     /forum/view/{id}
+    defaults: { _controller: GrupaVideoNetBundle:Forum:forumView}
+
+grupa_video_net_profile_view:
+    path:     /profile/view/{id}
+    defaults: { _controller: GrupaVideoNetBundle:ProfileView:profileView }
+
+

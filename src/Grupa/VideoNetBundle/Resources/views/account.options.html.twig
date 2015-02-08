@@ -1,0 +1,19 @@
+{% if not is_granted('ROLE_USER') %}
+<div id="option-login">
+	<button id="action-login" class="account-popup-hidden">LOGOWANIE</button>
+</div>
+<div id="option-register">
+	<a id="action-register" title="Rejestracja" href="register">REJESTRACJA</a>
+</div>
+{% endif %}
+{% if is_granted('ROLE_USER') %}
+<div id="option-menu">
+	<span>Witaj {{ app.user.username }}</span>
+	<button id="action-menu" class="dropdown" title="Rejestracja" href="logout">MENU</button>
+</div>
+<div id="account-dropdown" style="display:none">
+	<a href="profile/edit">Edytuj profil</a>
+	<a href="logout">Wyloguj się</a>
+	<a href="profile/view/{{ app.user.id }}">Zobacz profil</a>
+</div>
+{% endif %}

@@ -1,0 +1,12 @@
+uek_demo_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: UekDemoBundle:Default:index }
+
+uek_demo_about:
+    path:     /about
+    defaults: { _controller: UekDemoBundle:About:about }
+
+uek_demo_feed_create:
+   path: /feeds/create
+   defaults:  
+     _controller: UekDemoBundle:Feed:create 
