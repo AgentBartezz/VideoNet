@@ -1,14 +1,14 @@
 <!DOCTYPE html> 
 <html lang="pl">
 	<head>
-		<script src="{{ asset('js/jquery.js') }}"></script>
+		<script src="{{ asset('bundles/grupavideonet/js/jquery.js') }}"></script>
 		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-		<script src="{{ asset('js/script.js') }}"></script>
+		<script src="{{ asset('bundles/grupavideonet/js/script.js') }}"></script>
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="shortcut icon" href="favicon.ico"/>
-		<link rel="stylesheet" href="{{ asset('icons.css') }}"/>
-		<link rel="stylesheet" href="{{ asset('style.css') }}"/>
+		<link rel="stylesheet" href="{{ asset('bundles/grupavideonet/css/icons.css') }}"/>
+		<link rel="stylesheet" href="{{ asset('bundles/grupavideonet/css/style.css') }}"/>
 		<link rel="stylesheet" href="{{ asset('style_b.css') }}"/>
 		<!--[if lte IE 8]>
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -73,7 +73,7 @@
 		</header>
 		</div>
 		<div id="overlay" style="display:none">
-			<section id="account-popup" style="display:none">
+			<section id="account-popup" class="col">
 				<header class="popup-header">
 					<h2 class="popup-header-inner">LOGOWANIE<h2>
 					<button class="close-popup">X</button>
