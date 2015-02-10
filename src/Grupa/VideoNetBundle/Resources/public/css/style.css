@@ -21,7 +21,7 @@
 }
 
 htlm, div, body, p, span, ul, li, form, main, a {
-	color:#0aF;
+	color:#00aafF;
 	font-family:"Exo2";
 }
 
@@ -34,7 +34,7 @@ body {
 	background:url(../images/bg.png) repeat #00001f;
 }
 
-header#superhit{
+header#superhit {
 	width:100%;
 	background:#00000f;
 	height:200px;
