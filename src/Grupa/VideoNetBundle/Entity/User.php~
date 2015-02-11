@@ -1,0 +1,46 @@
+<?php
+namespace Grupa\VideoNetBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Grupa\VideoNetBundle\Entity\Orders as Orders;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table()
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Orders", mappedBy="user")
+     */
+    protected $orders;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+	
+	/**
+     * @ORM\Column(type="integer", name="move_meter_level")
+     */
+    protected $movieMeterLevel;
+	
+	/**
+     * @ORM\Column(type="string", length=100, name="movie_meter_rank")
+     */
+    protected $movieMeterRank;
+	
+	/**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $avatar = '../images/avatars/default.png';
+}

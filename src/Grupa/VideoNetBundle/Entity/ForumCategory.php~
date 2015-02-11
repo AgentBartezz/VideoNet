@@ -1,0 +1,46 @@
+<?php
+namespace Grupa\VideoNetBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Grupa\VideoNetBundle\Entity\ForumTopic as ForumTopic;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table()
+ */
+class ForumCategory
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+	
+	/**
+     * @ORM\OneToMany(targetEntity="ForumTopic", mappedBy="category")
+     */
+	protected $topics;
+	
+	public function __construct()
+    {
+        $this->topics = new ArrayCollection();
+    }
+	
+	/**
+     * @ORM\Column(type="integer", name="forum_category_level")
+     */
+    protected $level;
+
+	/**
+     * @ORM\Column(type="integer", name="forum_category_name")
+     */
+    protected $name;
+	
+	/**
+     * @ORM\Column(type="integer", name="post_status")
+     */
+    protected $status;
+}

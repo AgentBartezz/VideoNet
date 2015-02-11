@@ -1,0 +1,47 @@
+<?php
+namespace Grupa\VideoNetBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Grupa\VideoNetBundle\Entity\ForumTopic as ForumTopic;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table()
+ */
+class ForumPost
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+	
+	/**
+     * @ORM\Column(type="integer", name="post_author_id")
+     */
+    protected $author;
+
+	/**
+     * @ORM\ManyToOne(targetEntity="ForumTopic", inversedBy="posts")
+     * @ORM\JoinColumn(name="topic_id", referencedColumnName="id")
+     */
+    protected $topic;
+	
+	/**
+     * @ORM\Column(type="time", name="post_date")
+     */
+    protected $date;
+	
+	/**
+     * @ORM\Column(type="string", length=1000, name="post_content")
+     */
+    protected $content;
+	
+	/**
+     * @ORM\Column(type="integer", name="post_status")
+     */
+    protected $status;
+}

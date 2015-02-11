@@ -1,0 +1,45 @@
+<?php
+namespace Grupa\VideoNetBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Grupa\VideoNetBundle\Entity\Orders as Orders;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table()
+ */
+class Movie
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Orders", inversedBy="movies")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     */
+    protected $order;
+	
+	/**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="decimal", scale=2)
+     */
+    protected $price;
+	
+	/**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $category;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+}
