@@ -28,7 +28,8 @@ class ProfileViewController extends Controller {
 					'username'=> $user->getUsername(),
 					'id'=> $user->getId(),
 					'email'=> $user->getEmail(),
-					'roles' => $user->getRoles()
+					'roles' => $user->getRoles(),
+					'avatar' => $user->getAvatar()
 				)
 			)
 		);
