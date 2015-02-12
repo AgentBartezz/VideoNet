@@ -31,9 +31,14 @@ class ForumPost
     protected $topic;
 	
 	/**
-     * @ORM\Column(type="time", name="post_date")
+     * @ORM\Column(type="datetime", name="post_time")
      */
-    protected $date;
+    protected $postTime;
+	
+	public function __construct()
+	{
+		$this->postTime = new \DateTime('now');
+	}
 	
 	/**
      * @ORM\Column(type="string", length=1000, name="post_content")
@@ -78,29 +83,7 @@ class ForumPost
         return $this->author;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return ForumPost
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
+  
     /**
      * Set content
      *

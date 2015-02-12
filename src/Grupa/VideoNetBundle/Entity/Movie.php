@@ -3,6 +3,7 @@ namespace Grupa\VideoNetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Grupa\VideoNetBundle\Entity\Orders as Orders;
+use Grupa\VideoNetBundle\Entity\MovieCategory as MovieCategory;
 
 /**
  * @ORM\Entity
@@ -18,8 +19,8 @@ class Movie
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Orders", inversedBy="movies")
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Orders", inversedBy="movie")
+	 * @ORM\JoinTable(name="MovieOrders")
      */
     protected $order;
 	
@@ -33,8 +34,9 @@ class Movie
      */
     protected $price;
 	
-	/**
-     * @ORM\Column(type="string", length=100)
+   /**
+     * @ORM\ManyToOne(targetEntity="MovieCategory", inversedBy="name")
+     * @ORM\JoinColumn(name="category_name", referencedColumnName="name")
      */
     protected $category;
 
@@ -48,6 +50,7 @@ class Movie
     public function __construct()
     {
         $this->order = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**

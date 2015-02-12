@@ -11,8 +11,8 @@ grupa_video_net_contact:
     defaults: { _controller: GrupaVideoNetBundle:Contact:contact }
 
 grupa_video_net_films:
-    path:     /films
-    defaults: { _controller: GrupaVideoNetBundle:Films:filmsIndex }
+    path:     /films/{category}/{sort}/{direction}/{page}
+    defaults: { _controller: GrupaVideoNetBundle:Films:filmsIndex, category: "all", sort: "name", direction: "desc", page: 1  }
 
 grupa_video_net_films_view:
     path:     /films/view/{id}
@@ -29,5 +29,7 @@ grupa_video_net_forum_view:
 grupa_video_net_profile_view:
     path:     /profile/view/{id}
     defaults: { _controller: GrupaVideoNetBundle:ProfileView:profileView }
-
+grupa_video_net_admin_movie_add:
+    path:     /admin/movie/addd
+    defaults: { _controller: GrupaVideoNetBundle:Admin\MovieAdd:movieAdd }
 
