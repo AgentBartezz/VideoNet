@@ -4,3 +4,17 @@
 {% set forum_active = '' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
+
+{% block content %}
+	<section id="categories">
+		{% for category in categories %}
+			<a class="category" href="../films/{{ category.name }} ">{{ category.name }}</a>
+		{% endfor %}
+	</section>
+	{% for movie in movies %}
+		<div id="name">{{ movie.name }}</div>
+		
+			<div id="name">{{ movie.category.name }}</div>
+	
+	{% endfor %}
+{% endblock %}

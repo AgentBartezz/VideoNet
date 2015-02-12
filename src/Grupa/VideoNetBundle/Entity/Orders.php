@@ -17,22 +17,28 @@ class Orders
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    protected $user;
 	 
 	/**
-	 * @ORM\ManyToMany(targetEntity="Movie", mappedBy="order")
+	 * @ORM\ManyToMany(targetEntity="Movie", mappedBy="orders")
 	 */
 	protected $movies;
-
+	
+	/**
+     * @ORM\Column(type="datetime", name="order_time")
+     */
+    protected $orderTime;
+	
 	public function __construct()
 	{
+		$this->orderTime = new \DateTime('now');
 		$this->movies = new ArrayCollection();
 	}
+	
+	/**
+     * @ORM\Column(type="datetime", name="order_realized_time")
+     */
+    protected $orderRealizedTime;
+	
 
     /**
      * Get id
@@ -42,29 +48,6 @@ class Orders
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \Grupa\VideoNetBundle\Entity\User $user
-     * @return Orders
-     */
-    public function setUser(\Grupa\VideoNetBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Grupa\VideoNetBundle\Entity\User 
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**

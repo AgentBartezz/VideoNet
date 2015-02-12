@@ -20,29 +20,34 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Orders", mappedBy="user")
-     */
+     * @ORM\ManyToMany(targetEntity="Orders")
+     * @ORM\JoinTable(name="UserOrders",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="order_id", referencedColumnName="id", unique=true)}
+     *      )
+     **/
     protected $orders;
 
     public function __construct()
     {
+		parent::__construct();
         $this->orders = new ArrayCollection();
     }
 	
 	/**
-     * @ORM\Column(type="integer", name="move_meter_level")
+     * @ORM\Column(type="integer", name="movie_meter_level", nullable=true)
      */
     protected $movieMeterLevel;
 	
 	/**
-     * @ORM\Column(type="string", length=100, name="movie_meter_rank")
+     * @ORM\Column(type="string", length=100, name="movie_meter_rank", nullable=true)
      */
     protected $movieMeterRank;
 	
 	/**
      * @ORM\Column(type="string", length=100, options={"default" = "./images/avatars/default.png"})
      */
-    protected $avatar;
+    protected $avatar = "./images/avatars/default.png";
 
     /**
      * Get id

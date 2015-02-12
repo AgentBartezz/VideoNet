@@ -49,6 +49,13 @@ button {
 	outline:none;
 }
 
+h6 {
+	display:none;
+}
+
+h3 {
+	font-weight:normal;
+}
 
 #superhit-inner {
 	width:100%;
