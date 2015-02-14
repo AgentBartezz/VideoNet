@@ -5,6 +5,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Grupa\VideoNetBundle\Entity\Orders as Orders;
+use Grupa\VideoNetBundle\Entity\User as User;
 
 /**
  * @ORM\Entity
@@ -27,6 +28,11 @@ class User extends BaseUser
      *      )
      **/
     protected $orders;
+	
+	/**
+     * @ORM\OneToMany(targetEntity="ForumPost", mappedBy="user")
+     */
+	protected $posts;
 
     public function __construct()
     {
@@ -35,19 +41,16 @@ class User extends BaseUser
     }
 	
 	/**
-     * @ORM\Column(type="integer", name="movie_meter_level", nullable=true)
+     * @ORM\Column(type="integer", name="movie_meter_level", options={"default" = "0"})
      */
     protected $movieMeterLevel;
 	
-	/**
-     * @ORM\Column(type="string", length=100, name="movie_meter_rank", nullable=true)
-     */
-    protected $movieMeterRank;
+	
 	
 	/**
-     * @ORM\Column(type="string", length=100, options={"default" = "./images/avatars/default.png"})
+     * @ORM\Column(type="string", length=100, options={"default" = "default.png"})
      */
-    protected $avatar = "./images/avatars/default.png";
+    protected $avatar = "default.png";
 
     /**
      * Get id
@@ -159,5 +162,38 @@ class User extends BaseUser
     public function getOrders()
     {
         return $this->orders;
+    }
+	
+	/**
+     * Add posts
+     *
+     * @param \Grupa\VideoNetBundle\Entity\ForumPost $posts
+     * @return ForumCategory
+     */
+    public function addPost(\Grupa\VideoNetBundle\Entity\ForumPost $posts)
+    {
+        $this->posts[] = $posts;
+
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Grupa\VideoNetBundle\Entity\ForumPost $posts
+     */
+    public function removePost(\Grupa\VideoNetBundle\Entity\ForumPost $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }

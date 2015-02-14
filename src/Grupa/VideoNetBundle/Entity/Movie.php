@@ -44,20 +44,60 @@ class Movie
      * @ORM\Column(type="text")
      */
     protected $description;
-    /**
-     * Constructor
+   
+	/**
+     * @ORM\Column(type="boolean", name="is_hit")
      */
-    public function __construct()
-    {
-        $this->order = new \Doctrine\Common\Collections\ArrayCollection();
-
-    }
+    protected $isHit;
+	
+	/**
+     * @ORM\Column(type="boolean", name="is_superhit", nullable = true)
+     */
+    protected $isSuperHit;
+	
+	/**
+     * @ORM\Column(type="date", name="premiere_poland", nullable = true)
+     */
+    protected $premierePoland;
+	
+	/**
+     * @ORM\Column(type="date", name="premiere_world", nullable = true)
+     */
+    protected $premiereWorld;
+	
+	/**
+     * @ORM\Column(type="date", name="added_at")
+     */
+    protected $addedAt;
+	
+	/**
+     * @ORM\Column(type="string", length=4, name="production_year")
+     */
+    protected $productionYear;
+	
+	/**
+     * @ORM\Column(type="string", length=200, name="movie_foto")
+     */
+    protected $movieFoto;
 
     /**
      * Get id
      *
      * @return integer 
      */
+	 
+	 /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->order = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->addedAt = new \DateTime("now");
+		$this->premierePoland = new \DateTime();
+		$this->premiereWorld = new \DateTime();
+    }
+	 
+	
     public function getId()
     {
         return $this->id;
@@ -72,7 +112,6 @@ class Movie
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -95,7 +134,6 @@ class Movie
     public function setPrice($price)
     {
         $this->price = $price;
-
         return $this;
     }
 
@@ -118,7 +156,6 @@ class Movie
     public function setCategory($category)
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -141,7 +178,6 @@ class Movie
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -164,7 +200,6 @@ class Movie
     public function addOrder(\Grupa\VideoNetBundle\Entity\Orders $order)
     {
         $this->order[] = $order;
-
         return $this;
     }
 
@@ -187,4 +222,158 @@ class Movie
     {
         return $this->order;
     }
+	
+	/**
+     * Set isHit
+     *
+     * @param string $isHit
+     * @return Movie
+     */
+    public function setIsHit($isHit)
+    {
+        $this->isHit = $isHit;
+        return $this;
+    }
+
+    /**
+     * Get isHit
+     *
+     * @return string 
+     */
+    public function getIsHit()
+    {
+        return $this->isHit;
+    }
+	
+	/**
+     * Set isSuperHit
+     *
+     * @param string $isSuperHit
+     * @return Movie
+     */
+    public function setIsSuperHit($isSuperHit)
+    {
+        $this->isSuperHit = $isSuperHit;
+        return $this;
+    }
+
+    /**
+     * Get isSuperHit
+     *
+     * @return string 
+     */
+    public function getIsSuperHit()
+    {
+        return $this->isSuperHit;
+    }
+	
+	/**
+     * Set premierePoland
+     *
+     * @param string $premierePoland
+     * @return Movie
+     */
+    public function setPremierePoland($premierePoland)
+    {
+        $this->premierePoland = $premierePoland;
+        return $this;
+    }
+
+    /**
+     * Get premierePoland
+     *
+     * @return string 
+     */
+    public function getPremierePoland()
+    {
+        return $this->premierePoland;
+    }
+	
+	/**
+     * Set premiereWorld
+     *
+     * @param string $premiereWorld
+     * @return Movie
+     */
+    public function setPremiereWorld($premiereWorld)
+    {
+        $this->premiereWorld = $premiereWorld;
+        return $this;
+    }
+
+    /**
+     * Get premierePoland
+     *
+     * @return string 
+     */
+   public function getPremiereWorld()
+    {
+        return $this->premiereWorld;
+    }
+	
+	/**
+     * Set productionYear
+     *
+     * @param string $productionYear
+     * @return Movie
+     */
+   public function setProductionYear($productionYear)
+    {
+        $this->productionYear = $productionYear;
+        return $this;
+    }
+
+    /**
+     * Get productionYear
+     *
+     * @return string 
+     */
+    public function getProductionYear()
+    {
+        return $this->productionYear;
+	}
+	
+	/**
+     * Set movieFoto
+     *
+     * @param string $movieFoto
+     * @return Movie
+     */
+   public function setMovieFoto($movieFoto)
+    {
+        $this->movieFoto = $movieFoto;
+        return $this;
+    }
+
+    /**
+     * Get movieFoto
+     *
+     * @return string 
+     */
+    public function getMovieFoto()
+    {
+        return $this->movieFoto;
+	}
+	
+	/**
+     * Set addedAt
+     *
+     * @param string $addedAt
+     * @return Movie
+     */
+   public function setAddedAt($addedAt)
+    {
+        $this->addedAt = $addedAt;
+        return $this;
+    }
+
+    /**
+     * Get addedAt
+     *
+     * @return string 
+     */
+    public function getAddedAt()
+    {
+        return $this->addedAt;
+	}
 }

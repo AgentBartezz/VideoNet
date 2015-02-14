@@ -19,28 +19,26 @@ class ForumCategory
      */
     protected $id;
 	
+	
 	/**
-     * @ORM\OneToMany(targetEntity="ForumTopic", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="ForumSection", mappedBy="category")
      */
-	protected $topics;
+	protected $sections;
 	
 	public function __construct()
     {
-        $this->topics = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 	
-	/**
-     * @ORM\Column(type="integer", name="forum_category_level")
-     */
-    protected $level;
 
 	/**
-     * @ORM\Column(type="integer", name="forum_category_name")
+     * @ORM\Column(type="string", length=50, name="forum_category_name")
      */
     protected $name;
 	
 	/**
-     * @ORM\Column(type="integer", name="post_status")
+     * @ORM\Column(type="integer", name="category_status")
      */
     protected $status;
+
 }

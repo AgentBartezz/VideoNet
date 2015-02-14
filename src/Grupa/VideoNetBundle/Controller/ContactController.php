@@ -11,7 +11,7 @@ class ContactController extends Controller
     public function contactAction() {
 		$name = '';
 		$this->get('session')->set('name', $name);
-		
+		$link = $_SERVER["SCRIPT_NAME"];
 
 		// set and get session attributes
 			return $this->render(
@@ -19,7 +19,8 @@ class ContactController extends Controller
 			array (
 				'var1' => 'jeden',
 				'var2' => 'dwa',
-				'var3' => $name
+				'var3' => $name,
+				'link' => $link
 			)
 		);
     }

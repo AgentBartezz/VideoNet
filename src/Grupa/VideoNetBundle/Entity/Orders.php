@@ -82,4 +82,50 @@ class Orders
     {
         return $this->movies;
     }
+
+    /**
+     * Set orderTime
+     *
+     * @param \DateTime $orderTime
+     * @return Orders
+     */
+    public function setOrderTime($orderTime)
+    {
+        $this->orderTime = $orderTime;
+
+        return $this;
+    }
+
+    /**
+     * Get orderTime
+     *
+     * @return \DateTime 
+     */
+    public function getOrderTime()
+    {
+        return $this->orderTime;
+    }
+
+    /**
+     * Set orderRealizedTime
+     *
+     * @param \DateTime $orderRealizedTime
+     * @return Orders
+     */
+    public function setOrderRealizedTime($orderRealizedTime)
+    {
+        $this->orderRealizedTime = $orderRealizedTime;
+
+        return $this;
+    }
+
+    /**
+     * Get orderRealizedTime
+     *
+     * @return \DateTime 
+     */
+    public function getOrderRealizedTime()
+    {
+        return $this->orderRealizedTime;
+    }
 }

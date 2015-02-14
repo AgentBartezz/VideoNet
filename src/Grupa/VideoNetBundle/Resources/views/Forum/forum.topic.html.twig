@@ -1,0 +1,30 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = ' active' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set link_short = "http://v-ie.uek.krakow.pl/~s176041/images/avatars/" %}
+
+
+{% block content %}
+	Forum / {{ section }} / {{ category }}
+	<section class="forum-view-topic-posts">
+	<header class="forum-topic-name"><h2 class="forum-topic-name-inner">{{ topic.name }}</h2></header>
+	{% for post in topic.posts %}
+		<article class="forum-post-wrapper">
+			<div class="post-author-info">
+				<a class="post-author-nick" href="{{ link }}/profile/view/{{post.postAuthorId.id}}">{{ post.postAuthorId.username }}</a>
+				<img class="post-author-avatar" src="{{ link_short }}{{ post.postAuthorId.avatar }}"/>
+				<div class="movie-meter-outer">
+					<p class="movie-meter-level">Filmometr : {{ post.postAuthorId.movieMeterLevel }}</p>
+					<p class="movie-meter-rank">Nowicjusz</p>
+				</div>
+			</div>
+			<div class="post-content">
+				{{ post.content }}
+			</div>
+		</article>
+	{% endfor %}
+	</section>
+{% endblock %}

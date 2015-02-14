@@ -12,6 +12,8 @@ class MovieAddController extends Controller
 {
 	
     public function movieAddAction(Request $request) {
+		$link = $_SERVER["SCRIPT_NAME"];
+		
 		$movie = new Movie();
 		$form = $this->createForm(
 			new MovieType(),
@@ -28,7 +30,8 @@ class MovieAddController extends Controller
 		return $this->render(
 		'GrupaVideoNetBundle:Admin\Movie:movie.add.html.twig',
 			array(
-				'form' => $form->createView()
+				'form' => $form->createView(),
+				'link' => $link
 			)
 		);
     }

@@ -4,3 +4,17 @@
 {% set forum_active = ' active' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
+
+{% block content %}
+	{% for category in categories %}
+		<section class="forum-category">
+			<header class="forum-category-name"><h2 class="forum-category-name-inner">{{ category.name }}</h2></header>
+			{% for section in category.sections %}
+				<article class="forum-section">
+					<header class="forum-section-name"><h3 class="forum-section-name-inner"><a href="{{ link }}/forum/section/{{ section.id }}">{{ section.name }}</a></h3></header>
+				</article>
+			{% endfor %}
+		</section>
+	{% endfor %}
+
+{% endblock %}

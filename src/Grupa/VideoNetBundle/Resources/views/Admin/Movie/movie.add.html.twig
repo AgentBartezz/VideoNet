@@ -1,4 +1,47 @@
-<form method="POST">
-		{{ form_row(form) }}
-		<button type="submit">Wyslij</button>
-	</form>
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+
+{% block content %}
+<div id="admin-add-movie-form-outer">
+<header><h3>DODAJ FILM DO BAZY VIDEONETU</h3></header>
+{{ form_start(form, {'attr' : {'class':'admin-add-movie-form'}}) }}
+    {{ form_errors(form) }}
+	
+    {{ form_label(form.name, 'Tytuł filmu', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.name, {'attr' : {'class':'add-movie-input-title add-movie-input'}}) }}
+			
+	<div id="additional-checks">
+		{{ form_label(form.isHit, 'Dodać do kategorii hit?', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.isHit) }}
+		{{ form_label(form.isSuperHit, 'Wyświetlać jako superhit?', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.isSuperHit) }}
+	</div>
+		
+	{{ form_label(form.description, 'Opis filmu', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.description, {'attr' : {'class':'add-movie-input-desc add-movie-input'}}) }}
+	
+	<div id="add-movie-price-cat">
+		<div id="add-movie-price">
+			{{ form_label(form.price, 'Cena', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.price, {'attr' : {'class':'add-movie-input-price add-movie-input'}}) }}
+		</div>
+		<div id="add-movie-cat">
+			{{ form_label(form.category, 'Kategoria', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.category) }}
+		</div>
+	</div>
+	
+	<div id="add-movie-dates">
+		<div class="add-movie-date">
+			{{ form_label(form.production_year, 'Rok produkcji', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.production_year) }}
+		</div>
+		<div class="add-movie-date">
+			{{ form_label(form.premiere_poland, 'Premiera w Polsce', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.premiere_poland) }}
+		</div>
+		<div class="add-movie-date">
+			{{ form_label(form.premiere_world, 'Premiera światowa', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.premiere_world) }}
+		</div>
+	</div>
+	
+    <button type="submit" class="form-confirm-button">WYŚLIJ</button>
+{{ form_end(form) }}
+</div>
+{% endblock %}
