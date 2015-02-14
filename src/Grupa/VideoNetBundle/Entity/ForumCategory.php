@@ -4,7 +4,7 @@ namespace Grupa\VideoNetBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Grupa\VideoNetBundle\Entity\ForumTopic as ForumTopic;
+use Grupa\VideoNetBundle\Entity\ForumSection as ForumSection;
 
 /**
  * @ORM\Entity
@@ -19,30 +19,29 @@ class ForumCategory
      */
     protected $id;
 	
+	
 	/**
-     * @ORM\OneToMany(targetEntity="ForumTopic", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="ForumSection", mappedBy="category")
      */
-	protected $topics;
+	protected $sections;
+	
 	
 	public function __construct()
     {
-        $this->topics = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 	
-	/**
-     * @ORM\Column(type="integer", name="forum_category_level")
-     */
-    protected $level;
 
 	/**
-     * @ORM\Column(type="integer", name="forum_category_name")
+     * @ORM\Column(type="string", length=100, name="forum_category_name")
      */
     protected $name;
 	
 	/**
-     * @ORM\Column(type="integer", name="post_status")
+     * @ORM\Column(type="integer", name="category_status")
      */
     protected $status;
+
 
     /**
      * Get id
@@ -55,32 +54,9 @@ class ForumCategory
     }
 
     /**
-     * Set level
-     *
-     * @param integer $level
-     * @return ForumCategory
-     */
-    public function setLevel($level)
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
-    /**
-     * Get level
-     *
-     * @return integer 
-     */
-    public function getLevel()
-    {
-        return $this->level;
-    }
-
-    /**
      * Set name
      *
-     * @param integer $name
+     * @param string $name
      * @return ForumCategory
      */
     public function setName($name)
@@ -93,7 +69,7 @@ class ForumCategory
     /**
      * Get name
      *
-     * @return integer 
+     * @return string 
      */
     public function getName()
     {
@@ -124,35 +100,36 @@ class ForumCategory
     }
 
     /**
-     * Add topics
+     * Add sections
      *
-     * @param \Grupa\VideoNetBundle\Entity\ForumTopic $topics
+     * @param \Grupa\VideoNetBundle\Entity\ForumSection $sections
      * @return ForumCategory
      */
-    public function addTopic(\Grupa\VideoNetBundle\Entity\ForumTopic $topics)
+    public function addSection(\Grupa\VideoNetBundle\Entity\ForumSection $sections)
     {
-        $this->topics[] = $topics;
+        $this->sections[] = $sections;
 
         return $this;
     }
 
     /**
-     * Remove topics
+     * Remove sections
      *
-     * @param \Grupa\VideoNetBundle\Entity\ForumTopic $topics
+     * @param \Grupa\VideoNetBundle\Entity\ForumSection $sections
      */
-    public function removeTopic(\Grupa\VideoNetBundle\Entity\ForumTopic $topics)
+    public function removeSection(\Grupa\VideoNetBundle\Entity\ForumSection $sections)
     {
-        $this->topics->removeElement($topics);
+        $this->sections->removeElement($sections);
     }
 
     /**
-     * Get topics
+     * Get sections
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getTopics()
+    public function getSections()
     {
-        return $this->topics;
+        return $this->sections;
     }
+	
 }

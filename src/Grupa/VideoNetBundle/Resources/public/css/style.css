@@ -34,6 +34,22 @@ body {
 	background:url(../images/bg.png) repeat #00001f;
 }
 
+select {
+	border:1px solid #00ccFF;
+	background:#00002f;
+	padding:0px 6px;
+	height:40px;
+	min-width:80px;
+	color:#00ccff;
+	font-family:"Exo2";
+	font-size:17px;
+}
+
+select:hover {
+	border:1px solid #77ffFF;
+	color:#77ffff;
+}
+
 header#superhit {
 	width:100%;
 	background:#00000f;
@@ -53,8 +69,12 @@ h6 {
 	display:none;
 }
 
-h3 {
+h3, h2 {
 	font-weight:normal;
+}
+
+h2, h3, h4, h5 {
+	font-family:"Play";
 }
 
 #superhit-inner {
@@ -606,7 +626,6 @@ input#password:focus {
 
 .box-header-content {
 	font-size:32px;
-	font-family:"Play";
 	position:relative;
 	color:#00e7ff;
 }
@@ -1028,10 +1047,348 @@ input#password:focus {
 #news-next:active:hover,
 #trailers-footer-content:active:hover,
 #last-posts-footer-content:active:hover,
-#_submit:active:hover {
+#_submit:active:hover,
+.form-confirm-button:active:hover {
 	background:#00ffff;
 	color:#00002f;
 }
+
+#categories {
+	background:#00001f;
+	color:#00ddff;
+	width:350px;
+	height:800px;
+	position:relative;
+	float:left;
+}
+
+.category {
+	color:#00ddff;
+	text-decoration:none;
+	width:100%;
+	height:45px;
+	text-align:center;
+	border-bottom:1px solid #00004f;
+	font-family:"Oxygen";
+	font-size:18px;
+	display:block;
+	padding-top:13px;
+}
+
+.category:hover {
+	background:#00003f;
+	color:#77ffff;
+}
+
+.category:active:hover {
+	background:#00ffff;
+	color:#00002f;
+}
+
+#categories-header, 
+#movies-header {
+	background:#00004f;
+	width:100%;
+	height:50px;
+}
+
+#categories-header-inner,
+#movies-header-inner {
+	color:#00e7ff;
+	font-size:24px;
+	text-align:center;
+	padding-top:10px;
+}
+
+#movies-header-inner {
+	text-align:left;
+	padding:10px;
+}
+
+#movies {
+	float:right;
+	width:1100px;
+	height:2200px;
+	position:relative;
+}
+
+.movie {
+	height:200px;
+	width:100%;
+	background:#00002f;
+	margin-top:1px;
+}
+
+.movie-foto {
+	float:left;
+	width:200px;
+	height:200px;
+	overflow:hidden;
+	border-radius:50%;
+	-webkit-transition:all .3s;
+	-moz-transition:all .3s ;
+	-o-transition: all .3s;
+	transition:all .3s;
+	position:relative;
+	z-index:0;
+}
+
+.movie-foto:before {
+	content:'';
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.3);
+	z-index:10000000;
+	-webkit-transition:all .3s;
+	-moz-transition:all .3s ;
+	-o-transition: all .3s;
+	transition:all .3s;
+}
+
+.movie-foto-image {
+	width:auto;
+	margin-left:-100%;
+	height:200px;
+}
+
+.movie:hover .movie-foto {
+	border-radius:0%;
+}
+
+.movie:hover .movie-foto:before {
+	background:rgba(0,0,0,0.0);
+}
+
+
+.movie-info {
+	float:right;
+	width:calc(100% - 200px);
+	height:200px;
+}
+
+#admin-add-movie-form-outer {
+	width:90%;
+	height:1050px;
+	margin:0px auto;
+	border:10
+}
+
+#admin-add-movie-form-outer header {
+	width:100%;
+	background:#000077;
+}
+
+#admin-add-movie-form-outer header h3 {
+	color:#00e7ff;
+	font-size:20px;
+	text-align:center;
+	padding-top:13px;
+	height:50px;
+}
+
+.admin-add-movie-form {
+	width:100%;
+	height:1000px;
+	padding:8px;
+}
+
+.add-movie-label {
+	color:#00e7ff;
+	font-size:18px;
+	height:33px;
+}
+
+#add-movie-price {
+	width:48%;
+	float:left;
+}
+
+#add-movie-cat {
+	width:48%;
+	float:right;
+}
+
+#add-movie-price-cat {
+	height:90px;
+	clear:both;
+}
+
+#add-movie-dates {
+	height:90px;
+	clear:both;
+}
+
+.add-movie-date {
+	width:33.33%;
+	float:left;
+}
+
+.add-movie-input {
+	border:1px solid #00ccFF;
+	background:#00002f;
+	padding:4px 6px;
+	color:#00ccff;
+	font-family:"Exo2";
+	font-size:19px;
+	height:40px;
+	width:100%;
+}
+
+.add-movie-input:hover {
+	color:#77ffff;
+	border:1px solid #77ffFF;
+}
+
+.add-movie-input:focus {
+	box-shadow:0 0 8px #77ffff;
+	color:#77ffff;
+	border:1px solid #77ffFF;
+}
+
+.add-movie-input-title {
+
+}
+
+.add-movie-input-desc {
+	height:300px;
+	resize:none;
+}
+
+.add-movie-input-price {
+	
+}
+
+.form-confirm-button {
+	background:#000077;
+	color:#00ffff;
+	width:140px;
+	height:40px;
+	font-size:17px;
+	font-family:"Play";
+}
+
+.form-confirm-button:hover {
+	background:#000099;
+	color:#77ffff;
+}
+
+.forum-category {
+	width:100%;
+	max-width:1500px;
+	margin-bottom:20px;
+}
+
+.forum-category-name, 
+.forum-topic-name {
+	width:100%;
+	height:50px;
+	background:#00004f;
+}
+
+.forum-category-name-inner,
+.forum-topic-name-inner {
+	padding:12px 6px;
+	color:#00e7ff;
+	font-size:22px;
+}
+
+.forum-category-name-inner {
+	text-transform:uppercase;
+}
+
+.forum-section {
+	background:#00002f;
+	color:#00AAFF;
+	width:100%;
+	height:90px;
+	padding:6px;
+	margin-top:1px;
+}
+
+.forum-section:hover {
+	background:#00003f;
+}
+
+.forum-section-name-inner a{
+	text-decoration:none;
+	font-size:18px;
+	font-family:"Oxygen";
+}
+
+.forum-section-name-inner a:hover {
+	text-decoration:underline;
+	color:#00ffff;
+}
+
+.forum-post-wrapper {
+	width:100%;
+	background:#00002f;
+	position:relative;
+	margin-top:1px;
+	min-height:220px;
+	display:table;
+}
+
+.post-author-info {
+	float:none;
+	width:300px;
+	min-height:220px;
+	padding:10px;
+	display:table-cell;
+	vertical-align:top;
+}
+
+.post-content {
+	float:none;
+	width:calc(100% - 301px);
+	min-height:220px;
+	background:#00003f;
+	padding:10px;
+	display:table-cell;
+	vertical-align:top;
+}
+
+.post-author-avatar {
+	height:130px;
+	width:auto;
+	display:block;
+}
+
+.post-author-nick {
+	text-decoration:none;
+	font-size:20px;
+	text-align:center;
+	color:#00ffff;
+	display:block;
+	margin-bottom:3px;
+}
+
+.movie-meter-outer {
+	background:#00ffff;
+	width:140px;
+	color:#00001f;
+	height:35px;
+	margin-top:5px;
+	padding-top:1px;
+}
+
+.movie-meter-level {
+	color:#00001f;
+	text-align:center;
+	font-family:"Play";
+	font-size:14px;
+}
+
+.movie-meter-rank {
+	color:#00001f;
+	text-align:center;
+	font-family:"Play";
+	font-size:14px;
+}
+
 
 @media screen and (max-width:767px) {
 	#under-bars {
@@ -1483,6 +1840,19 @@ input#password:focus {
 @media screen and (min-width:961px) and (max-width:1499px) {
 	#container {
 		padding:1px;
+	}
+	
+	#categories {
+		background:#00001f;
+		color:#00ddff;
+		width:25%;
+	}
+	
+	#movies {
+		float:right;
+		width:70%;
+		height:2200px;
+		position:relative;
 	}
 
 	#sliders-container {

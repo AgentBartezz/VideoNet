@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 class ProfileViewController extends Controller {
 	public function profileViewAction($id)
 	{
+		$link = $_SERVER["SCRIPT_NAME"];
 		$user = $this->getDoctrine()
 			->getRepository('GrupaVideoNetBundle:User')
 			->find($id);
@@ -30,7 +31,8 @@ class ProfileViewController extends Controller {
 					'email'=> $user->getEmail(),
 					'roles' => $user->getRoles(),
 					'avatar' => $user->getAvatar()
-				)
+				),
+				'link' => $link
 			)
 		);
 	}

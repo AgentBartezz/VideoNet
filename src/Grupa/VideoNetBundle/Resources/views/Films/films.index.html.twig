@@ -4,17 +4,37 @@
 {% set forum_active = '' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
+{% set count = 1 %}
+{% set link_short = "/~s176041/images/news/" %}
 
 {% block content %}
 	<section id="categories">
-		{% for category in categories %}
-			<a class="category" href="<?php echo SCRIPT_NAME ?>../films/{{ category.name }} ">{{ category.name }}</a>
+		<header id="categories-header"><h3 id="categories-header-inner">KATEGORIE</h3></header>
+			<a class="category" href="{{ link }}/films/all">Wszystkie filmy</a>
+			<a class="category" href="{{ link }}/films/hits">HITY</a>
+			{% for category in categories %}
+				<a class="category" href="{{ link }}/films/{{ category.name|replace({" " : "_"}) }} ">{{ category.name }}</a>
+			
+			{% endfor %}
+	</section>
+	<section id="movies">
+		<header id="movies-header"><h3 id="movies-header-inner">FILMY</h3></header>
+		{% for movie in movies %}
+			<article class="movie">
+				<div class="movie-info">
+					<header class="movie-info-name">{{ movie.name }}</header>
+					<div clas="movie-info-details"><a class="movie-info-details-category" href="{{ link }}/films/{{ movie.category.name|replace({" " : "_"}) }} ">{{ movie.category.name }}</a></div>
+				</div>
+				<div class="movie-foto">
+					<img class="movie-foto-image" src="{{ link_short }}i{{ count }}.jpg"/>
+				</div>
+			</article>
+			{% set count = count + 1 %}
 		{% endfor %}
 	</section>
-	{% for movie in movies %}
-		<div id="name">{{ movie.name }}</div>
-		
-			<div id="name">{{ movie.category.name }}</div>
-	
-	{% endfor %}
+	{% if page > 1 %}
+		<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page - 1 }}">POPRZEDNIA STRONA</a>
+	{% endif %}
+	<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page + 1 }}">NASTĘPNA STRONA</a>
+
 {% endblock %}

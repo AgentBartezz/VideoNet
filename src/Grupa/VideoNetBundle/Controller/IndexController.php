@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 class IndexController extends Controller
 {
     public function indexAction(Request $request) {
-		
+		$link = $_SERVER["SCRIPT_NAME"];
 
 		$trailer1 = "http://videos.hd-trailers.net/36950c9b-6630-4b93-9173-5a3601bf1b32_rEoBt0FyD5Z0o60qKlIaNEas40aGF5v1ciiDXsCvsrJdo7m77asorzMHAv3MbF0qFdJaY5pUqro-_8_0.mp4";
 		$trailer2 = "http://videos.hd-trailers.net/bf2235b4-bf12-47e6-a309-18afc5fa0281_XCTMfz12XJPWOHe0XE2wNkFi17elWruNOjsjTZ1DOvPIM0Gs3SCLY0cm5O9KoJcSmJ4bCyEqWg8-_9_0.mp4";
@@ -28,7 +28,8 @@ class IndexController extends Controller
 					'trailer2' => $trailer2,
 					'trailer3' => $trailer3,
 					'trailer4' => $trailer4,
-				)
+				),
+				'link' => $link
 			)
 		);
     }

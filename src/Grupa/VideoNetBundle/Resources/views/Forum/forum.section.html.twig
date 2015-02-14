@@ -1,0 +1,19 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = ' active' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+
+
+{% block content %}
+	<section class="forum-category">
+		<header class="forum-category-name"><h2 class="forum-category-name-inner">{{ section.name }}</h2></header>
+		{% for topic in section.topics %}
+		<article class="forum-section">
+			<header class="forum-section-name"><h3 class="forum-section-name-inner"><a href="{{ link }}/forum/section/{{ section.id }}/topic/{{ topic.id }}">{{ topic.name }}</a></h3></header>
+		</section>
+		{% endfor %}
+	</section>
+
+{% endblock %}
