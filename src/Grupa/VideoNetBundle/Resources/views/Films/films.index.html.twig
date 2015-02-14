@@ -8,7 +8,7 @@
 {% block content %}
 	<section id="categories">
 		{% for category in categories %}
-			<a class="category" href="../films/{{ category.name }} ">{{ category.name }}</a>
+			<a class="category" href="<?php echo SCRIPT_NAME ?>../films/{{ category.name }} ">{{ category.name }}</a>
 		{% endfor %}
 	</section>
 	{% for movie in movies %}
