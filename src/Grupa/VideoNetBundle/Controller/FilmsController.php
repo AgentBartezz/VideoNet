@@ -16,7 +16,11 @@ class FilmsController extends Controller
 		
 		if($category == "all") {
 			$where = array();
-		} else {
+		} 
+		else if ($category == "hits") {
+			$where = array('isHit' => '1');
+		} 
+		else {
 			$category = str_replace("_", " ", $category);
 			$where = array('category' => $category);
 		}
@@ -30,13 +34,19 @@ class FilmsController extends Controller
 				   $offset
 			);
 			
-		$categories = $em->getRepository('GrupaVideoNetBundle:MovieCategory')->findAll();	
+		$link = $_SERVER["SCRIPT_NAME"];
+		$categories = $em->getRepository('GrupaVideoNetBundle:MovieCategory')->findAll();
 			
 		return $this->render(
 			'GrupaVideoNetBundle:Films:films.index.html.twig',
 			array (
 				'movies' => $movies,
-				'categories' => $categories
+				'categories' => $categories,
+				'link' => $link,
+				'category' => $category,
+				'sort' => $sort,
+				'direction' => $direction,
+				'page' => $page
 			)
 		);
     }

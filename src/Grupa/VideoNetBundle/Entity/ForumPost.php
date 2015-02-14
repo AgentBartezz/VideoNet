@@ -5,6 +5,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Grupa\VideoNetBundle\Entity\ForumTopic as ForumTopic;
+use Grupa\VideoNetBundle\Entity\ForumCategory as ForumCategory;
 
 /**
  * @ORM\Entity
@@ -29,6 +30,18 @@ class ForumPost
      * @ORM\JoinColumn(name="topic_id", referencedColumnName="id")
      */
     protected $topic;
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="ForumSection", inversedBy="posts")
+     * @ORM\JoinColumn(name="section_id", referencedColumnName="id")
+     */
+    protected $section;
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
+     * @ORM\JoinColumn(name="post_author_id", referencedColumnName="id")
+     */
+    protected $postAuthorId;
 	
 	/**
      * @ORM\Column(type="datetime", name="post_time")
@@ -151,5 +164,78 @@ class ForumPost
     public function getTopic()
     {
         return $this->topic;
+    }
+	
+	
+	
+	/**
+     * Set postAuthorId
+     *
+     * @param \Grupa\VideoNetBundle\Entity\User $postAuthorId
+     * @return ForumPost
+     */
+    public function setPostAuthorId(\Grupa\VideoNetBundle\Entity\User $postAuthorId = null)
+    {
+        $this->postAuthorId = $postAuthorId;
+
+        return $this;
+    }
+
+    /**
+     * Get postAuthorId
+     *
+     * @return \Grupa\VideoNetBundle\Entity\ForumTopic 
+     */
+    public function getPostAuthorId()
+    {
+        return $this->postAuthorId;
+    }
+	
+	/**
+     * Set category
+     *
+     * @param \Grupa\VideoNetBundle\Entity\ForumCategory $category
+     * @return ForumPost
+     */
+    public function setCategory(\Grupa\VideoNetBundle\Entity\ForumCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Grupa\VideoNetBundle\Entity\ForumCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+	
+	
+
+    /**
+     * Set postTime
+     *
+     * @param \DateTime $postTime
+     * @return ForumPost
+     */
+    public function setPostTime($postTime)
+    {
+        $this->postTime = $postTime;
+
+        return $this;
+    }
+
+    /**
+     * Get postTime
+     *
+     * @return \DateTime 
+     */
+    public function getPostTime()
+    {
+        return $this->postTime;
     }
 }

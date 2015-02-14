@@ -1,4 +1,4 @@
-grupa_video_net_homepage:
+grupa_video_net_index_default:
     path:     /
     defaults: { _controller: GrupaVideoNetBundle:Index:index }
 
@@ -13,7 +13,6 @@ grupa_video_net_contact:
 grupa_video_net_films:
     path:     /films/{category}/{sort}/{direction}/{page}
     defaults: { _controller: GrupaVideoNetBundle:Films:filmsIndex, category: "all", sort: "name", direction: "desc", page: 1  }
-
 grupa_video_net_films_view:
     path:     /films/view/{id}
     defaults: { _controller: GrupaVideoNetBundle:Films:filmsView }
@@ -21,15 +20,18 @@ grupa_video_net_films_view:
 grupa_video_net_forum:
     path:     /forum
     defaults: { _controller: GrupaVideoNetBundle:Forum:forumIndex }
-
-grupa_video_net_forum_view:
-    path:     /forum/view/{id}
-    defaults: { _controller: GrupaVideoNetBundle:Forum:forumView}
+grupa_video_net_forum_section:
+    path:     /forum/section/{section_id}/{page}
+    defaults: { _controller: GrupaVideoNetBundle:Forum:forumSection, page : 1}
+grupa_video_net_forum_topic:
+    path:     /forum/section/{section_id}/topic/{topic_id}/{page}
+    defaults: { _controller: GrupaVideoNetBundle:Forum:forumTopic, page : 1}
 
 grupa_video_net_profile_view:
     path:     /profile/view/{id}
     defaults: { _controller: GrupaVideoNetBundle:ProfileView:profileView }
+
 grupa_video_net_admin_movie_add:
-    path:     /admin/movie/addd
+    path:     /admin/movie/add
     defaults: { _controller: GrupaVideoNetBundle:Admin\MovieAdd:movieAdd }
 

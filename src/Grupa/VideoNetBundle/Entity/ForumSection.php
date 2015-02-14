@@ -4,16 +4,15 @@ namespace Grupa\VideoNetBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Grupa\VideoNetBundle\Entity\ForumCategory as ForumCategory;
-use Grupa\VideoNetBundle\Entity\ForumPost as ForumPost;
+use Grupa\VideoNetBundle\Entity\ForumTopic as ForumTopic;
 
 /**
  * @ORM\Entity
  * @ORM\Table()
  */
-class ForumTopic
+class ForumSection
 {
-    /**
+	/**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -21,31 +20,44 @@ class ForumTopic
     protected $id;
 	
 	/**
-     * @ORM\ManyToOne(targetEntity="ForumSection", inversedBy="topics")
-     * @ORM\JoinColumn(name="section_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ForumCategory", inversedBy="sections")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
-    protected $section;
+    protected $category;
 	
 	/**
-     * @ORM\OneToMany(targetEntity="ForumPost", mappedBy="topic")
+     * @ORM\Column(type="string", length=50, name="forum_category_name")
+     */
+    protected $name;	
+	
+	/**
+     * @ORM\OneToMany(targetEntity="ForumTopic", mappedBy="section")
+     */
+	protected $topics;
+	
+	/**
+     * @ORM\OneToMany(targetEntity="ForumPost", mappedBy="section")
      */
 	protected $posts;
 	
 	public function __construct()
     {
-        $this->posts = new ArrayCollection();
+		$this->posts = new ArrayCollection();
+        $this->topics = new ArrayCollection();
     }
-
+	
 	/**
-     * @ORM\Column(type="string", length=50, name="topic_name")
-     */
-    protected $name;
-
+	 * @ORM\Column(type="string", length=100, name="sec_desc", nullable=true)
+	 */
+	protected $secDesc;
+	
 	/**
-     * @ORM\Column(type="integer", name="topic_status")
+     * @ORM\Column(type="integer", name="category_status", options = {"default" = "0"})
      */
     protected $status;
-
+	
+	
+	
     /**
      * Get id
      *
@@ -55,12 +67,12 @@ class ForumTopic
     {
         return $this->id;
     }
-
+	
     /**
      * Set name
      *
-     * @param string $name
-     * @return ForumTopic
+     * @param integer $name
+     * @return ForumCategory
      */
     public function setName($name)
     {
@@ -72,7 +84,7 @@ class ForumTopic
     /**
      * Get name
      *
-     * @return string 
+     * @return integer 
      */
     public function getName()
     {
@@ -83,7 +95,7 @@ class ForumTopic
      * Set status
      *
      * @param integer $status
-     * @return ForumTopic
+     * @return ForumCategory
      */
     public function setStatus($status)
     {
@@ -101,12 +113,70 @@ class ForumTopic
     {
         return $this->status;
     }
+	
+	/**
+     * Add topics
+     *
+     * @param \Grupa\VideoNetBundle\Entity\ForumTopic $topics
+     * @return ForumCategory
+     */
+    public function addTopic(\Grupa\VideoNetBundle\Entity\ForumTopic $topics)
+    {
+        $this->topics[] = $topics;
+
+        return $this;
+    }
+
+    /**
+     * Remove topics
+     *
+     * @param \Grupa\VideoNetBundle\Entity\ForumTopic $topics
+     */
+    public function removeTopic(\Grupa\VideoNetBundle\Entity\ForumTopic $topics)
+    {
+        $this->topics->removeElement($topics);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
+	
+	
+
+    /**
+     * Set secDesc
+     *
+     * @param string $secDesc
+     * @return ForumSection
+     */
+    public function setSecDesc($secDesc)
+    {
+        $this->secDesc = $secDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get secDesc
+     *
+     * @return string 
+     */
+    public function getSecDesc()
+    {
+        return $this->secDesc;
+    }
 
     /**
      * Set category
      *
      * @param \Grupa\VideoNetBundle\Entity\ForumCategory $category
-     * @return ForumTopic
+     * @return ForumSection
      */
     public function setCategory(\Grupa\VideoNetBundle\Entity\ForumCategory $category = null)
     {
@@ -124,12 +194,12 @@ class ForumTopic
     {
         return $this->category;
     }
-
-    /**
+	
+	/**
      * Add posts
      *
      * @param \Grupa\VideoNetBundle\Entity\ForumPost $posts
-     * @return ForumTopic
+     * @return ForumCategory
      */
     public function addPost(\Grupa\VideoNetBundle\Entity\ForumPost $posts)
     {
@@ -156,28 +226,5 @@ class ForumTopic
     public function getPosts()
     {
         return $this->posts;
-    }
-
-    /**
-     * Set section
-     *
-     * @param \Grupa\VideoNetBundle\Entity\ForumSection $section
-     * @return ForumTopic
-     */
-    public function setSection(\Grupa\VideoNetBundle\Entity\ForumSection $section = null)
-    {
-        $this->section = $section;
-
-        return $this;
-    }
-
-    /**
-     * Get section
-     *
-     * @return \Grupa\VideoNetBundle\Entity\ForumSection 
-     */
-    public function getSection()
-    {
-        return $this->section;
     }
 }
