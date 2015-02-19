@@ -1,0 +1,17 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = ' active' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+
+{% block content %}
+	<h2>Dowanie recenzji dla filmu: {{ movie.name }}</h2>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+		{{ form_label(form.content, 'Treść', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.content, {'attr' : {'class':'add-movie-input-desc add-movie-input'}}) }}
+		{{ form_rest(form) }}
+		<a class="review-back" href="{{ path('grupa_video_net_films_view', {'id': movie.id }) }}">WRÓC DO FILMU</a>
+		<button style="margin-top:10px;" class="form-add-movie" form-add-type="submit">WYŚLIJ</button>
+	</form>
+{% endblock %}

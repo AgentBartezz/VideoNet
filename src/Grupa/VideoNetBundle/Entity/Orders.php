@@ -19,7 +19,7 @@ class Orders
     protected $id;
 	 
 	/**
-	 * @ORM\ManyToMany(targetEntity="Movie", mappedBy="orders")
+	 * @ORM\ManyToMany(targetEntity="Movie", mappedBy="order")
 	 */
 	protected $movies;
 	
@@ -35,7 +35,13 @@ class Orders
 	}
 	
 	/**
-     * @ORM\Column(type="datetime", name="order_realized_time")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+	
+	/**
+     * @ORM\Column(type="datetime", name="order_realized_time", nullable=true)
      */
     protected $orderRealizedTime;
 	
@@ -59,7 +65,6 @@ class Orders
     public function addMovie(\Grupa\VideoNetBundle\Entity\Movie $movies)
     {
         $this->movies[] = $movies;
-
         return $this;
     }
 
@@ -92,7 +97,6 @@ class Orders
     public function setOrderTime($orderTime)
     {
         $this->orderTime = $orderTime;
-
         return $this;
     }
 
@@ -105,6 +109,29 @@ class Orders
     {
         return $this->orderTime;
     }
+	
+    /**
+     * Set user
+     *
+     * @param \DateTime $user
+     * @return Orders
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }	
+	
 
     /**
      * Set orderRealizedTime
@@ -115,7 +142,6 @@ class Orders
     public function setOrderRealizedTime($orderRealizedTime)
     {
         $this->orderRealizedTime = $orderRealizedTime;
-
         return $this;
     }
 

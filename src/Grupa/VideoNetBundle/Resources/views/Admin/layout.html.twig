@@ -24,14 +24,6 @@
 		</script>
 			<div id="ie-warning"><div><p>Wykryliśmy że korzystasz z przestarzałej przeglądarki Internet Explorer 8 lub niższej, co może spowodować problemy w prawidłowym wyświetlaniu naszej strony. Radzimy pobrać najnowszą wersję przeglądarki. Pozostając przy obecnej upewnij się, że masz wyłączony tryb zgodności.<br>Dziękujemy i życzymy miłego przeglądania.</p><button type="button" onclick="e();">ZAMKNIJ</button> </div></div>
 		<![endif]-->
-		<header id="superhit">
-			<div id="superhit-inner">
-				<a href="#">
-					<div class="slider-movie-details">SUPERHIT TYGODNIA : </div>
-					<img src="{{ asset('images/banner.jpg') }}" alt="SUPERHIT TYGODNIA"/>
-				</a>
-			</div>
-		</header>
 		<div id="under-bars">
 		<header role="banner" id="bars" class="relative expanded-1">
 			<div id="top-bar" class="expanded-2">
@@ -41,11 +33,12 @@
 					<nav id="menu" role="navigation" class="collapsed-3">
 						<h6>Nawigacja</h6>
 						<ul class="menu-inner">
-							<li class="menu-item{{ start_active }}"><a href="{{ path('grupa_video_net_index_default') }}" class="expanded-2" title="start"><i class="glyphicon glyphicon-home" aria-hidden="true"></i><span>START</span></a></li>
-							<li class="menu-item{{ filmy_active }}"><a href="{{ path('grupa_video_net_films') }}" class="expanded-2" title="filmy"><i class="glyphicon glyphicon-film" aria-hidden="true"></i><span>FILMY</span></a></li>
-							<li class="menu-item{{ forum_active }}"><a href="{{ path('grupa_video_net_forum') }}" class="expanded-2" title="forum"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span>FORUM</span></a></li>
-							<li class="menu-item{{ cos_active }}"><a href="{{ path('grupa_video_net_competitions') }}" class="expanded-2" title="konkursy"><i class="glyphicon glyphicon-gift" aria-hidden="true"></i><span>KONKURSY</span></a></li>
-							<li class="menu-item{{ kontakt_active }}"><a href="{{ path('grupa_video_net_contact') }}" class="expanded-2" title="kontakt"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><span>KONTAKT</span></a></li>
+							<li class="menu-item{{ start_active }}"><a href="{{ link }}/index" class="expanded-2" title="start"><i class="glyphicon glyphicon-home" aria-hidden="true"></i><span>START</span></a></li>
+							<li class="menu-item{{ filmy_active }}"><a href="{{ link }}/films" class="expanded-2" title="filmy"><i class="glyphicon glyphicon-film" aria-hidden="true"></i><span>FILMY</span></a></li>
+							<li class="menu-item{{ forum_active }}"><a href="{{ link }}/forum" class="expanded-2" title="forum"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span>FORUM</span></a></li>
+							<li class="menu-item{{ forum_active }}"><a href="{{ link }}/forum" class="expanded-2" title="forum"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span>FORUM</span></a></li>
+							<li class="menu-item{{ cos_active }}"><a href="{{ link }}/competition" class="expanded-2" title="konkursy"><i class="glyphicon glyphicon-gift" aria-hidden="true"></i><span>KONKURSY</span></a></li>
+							<li class="menu-item{{ kontakt_active }}"><a href="{{ link }}/kontakt" class="expanded-2" title="kontakt"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><span>KONTAKT</span></a></li>
 						</ul>
 					</nav>
 				</div>

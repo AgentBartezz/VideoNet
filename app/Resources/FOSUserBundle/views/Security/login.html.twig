@@ -1,0 +1,33 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set link_short = "/~s176041/images/news/" %}
+
+{% block content %} 
+			<section id="account-popup" style="margin:10px auto 100px; position:relative; top:0; left:0">
+				<header class="popup-header">
+					<h2 class="popup-header-inner">LOGOWANIE<h2>
+				</header>
+				<div id="popup-right-box" style="width:100%">
+					<section id="login-popup-form" class="absolute">
+						<div id="user-login-icon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></div>	
+						<form id="login-popup-form-inner" action="{{ path("fos_user_security_check") }}" method="post">
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+							<label for="username">Nazwa użytkownika</label>
+							<input type="text" id="username" name="_username" required="required" />
+							<label for="password">Hasło</label>
+							<input type="password" id="password" name="_password" required="required" />
+							<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+							<label for="remember_me" style="display:inline-block; width:auto; padding-left:5px; ">Zapamiętaj moje dane</label>
+							<input type="submit" id="_submit" name="_submit" value="ZALOGUJ SIĘ" />
+						</form>
+					</section>
+				</div>
+				<a class="login-page-option" href="{{ path("fos_user_registration_register") }}">REJESTRACJA</a>
+				<a class="login-page-option" href="{{ path("fos_user_resetting_request") }}">ZMIEŃ HASŁO</a>
+			</section>
+			
+{% endblock %}

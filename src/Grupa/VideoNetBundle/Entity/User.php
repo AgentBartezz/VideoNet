@@ -5,7 +5,8 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Grupa\VideoNetBundle\Entity\Orders as Orders;
-use Grupa\VideoNetBundle\Entity\User as User;
+use Grupa\VideoNetBundle\Entity\Review as Review;
+
 
 /**
  * @ORM\Entity
@@ -20,14 +21,15 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Orders")
-     * @ORM\JoinTable(name="UserOrders",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="order_id", referencedColumnName="id", unique=true)}
-     *      )
-     **/
-    protected $orders;
+   /**
+     * @ORM\OneToMany(targetEntity="Orders", mappedBy="user")
+     */
+	protected $orders;
+	
+	/**
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="user")
+     */
+	protected $reviews;
 	
 	/**
      * @ORM\OneToMany(targetEntity="ForumPost", mappedBy="user")
@@ -38,12 +40,14 @@ class User extends BaseUser
     {
 		parent::__construct();
         $this->orders = new ArrayCollection();
+		$this->posts = new ArrayCollection();
+		$this->reviews = new ArrayCollection();
     }
 	
 	/**
      * @ORM\Column(type="integer", name="movie_meter_level", options={"default" = "0"})
      */
-    protected $movieMeterLevel;
+    protected $movieMeterLevel = 0;
 	
 	
 	
@@ -83,29 +87,6 @@ class User extends BaseUser
     public function getMovieMeterLevel()
     {
         return $this->movieMeterLevel;
-    }
-
-    /**
-     * Set movieMeterRank
-     *
-     * @param string $movieMeterRank
-     * @return User
-     */
-    public function setMovieMeterRank($movieMeterRank)
-    {
-        $this->movieMeterRank = $movieMeterRank;
-
-        return $this;
-    }
-
-    /**
-     * Get movieMeterRank
-     *
-     * @return string 
-     */
-    public function getMovieMeterRank()
-    {
-        return $this->movieMeterRank;
     }
 
     /**
@@ -196,4 +177,40 @@ class User extends BaseUser
     {
         return $this->posts;
     }
+	
+	
+	
+	/**
+     * Add reviews
+     *
+     * @param \Grupa\VideoNetBundle\Entity\Reviews $reviews
+     * @return User
+     */
+    public function addReview(\Grupa\VideoNetBundle\Entity\Review $reviews)
+    {
+        $this->reviews[] = $reviews;
+        return $this;
+    }
+
+    /**
+     * Remove reviews
+     *
+     * @param \Grupa\VideoNetBundle\Entity\Reviews $reviews
+     */
+    public function removeReview(\Grupa\VideoNetBundle\Entity\Review $reviews)
+    {
+        $this->reviews->removeElement($reviews);
+    }
+
+    /**
+     * Get reviews
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
+	
+	
 }

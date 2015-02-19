@@ -2,6 +2,7 @@
 namespace Grupa\VideoNetBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Grupa\VideoNetBundle\Entity\Review as Review;
 use Grupa\VideoNetBundle\Entity\Orders as Orders;
 use Grupa\VideoNetBundle\Entity\MovieCategory as MovieCategory;
 
@@ -33,6 +34,11 @@ class Movie
      * @ORM\Column(type="decimal", scale=2)
      */
     protected $price;
+	
+	/**
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="user")
+     */
+	protected $reviews;
 	
    /**
      * @ORM\ManyToOne(targetEntity="MovieCategory", inversedBy="name")
@@ -76,10 +82,30 @@ class Movie
     protected $productionYear;
 	
 	/**
-     * @ORM\Column(type="string", length=200, name="movie_foto")
+     * @ORM\Column(type="string", length=200, name="movie_foto", options = {"default" = "default.png"} )
      */
-    protected $movieFoto;
+    protected $movieFoto = "default.png";
 
+	/**
+     * @ORM\Column(type="string", length=200, name="movie_big_foto", options = {"default" = "defaultBig.png"} )
+     */
+    protected $movieBigFoto = "defaultBig.png";
+	
+	/**
+     * @ORM\Column(type="string", length=200, name="movie_video", nullable=true )
+     */
+    protected $movieVideo;
+	
+	/**
+     * @ORM\Column(type="integer", nullable=true )
+     */
+    protected $duration;
+	
+	/**
+     * @ORM\Column(type="string", length=50, nullable=true, name="country_production" )
+     */
+    protected $countryProduction;
+	
     /**
      * Get id
      *
@@ -91,6 +117,7 @@ class Movie
      */
     public function __construct()
     {
+		$this->reviews = new \Doctrine\Common\Collections\ArrayCollection();
         $this->order = new \Doctrine\Common\Collections\ArrayCollection();
 		$this->addedAt = new \DateTime("now");
 		$this->premierePoland = new \DateTime();
@@ -123,6 +150,51 @@ class Movie
     public function getName()
     {
         return $this->name;
+    }
+	
+	 /**
+     * Set duration
+     *
+     * @param integer $duration
+     * @return Movie
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+        return $this;
+    }
+	
+
+    /**
+     * Get duration
+     *
+     * @return integer 
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+	/**
+     * Set countryProduction
+     *
+     * @param string $countryProduction
+     * @return Movie
+     */
+    public function setCountryProduction($countryProduction)
+    {
+        $this->countryProduction = $countryProduction;
+        return $this;
+    }
+
+    /**
+     * Get countryProduction
+     *
+     * @return string 
+     */
+    public function getCountryProduction()
+    {
+        return $this->countryProduction;
     }
 
     /**
@@ -199,6 +271,7 @@ class Movie
      */
     public function addOrder(\Grupa\VideoNetBundle\Entity\Orders $order)
     {
+		$order->addMovie($this);
         $this->order[] = $order;
         return $this;
     }
@@ -356,6 +429,51 @@ class Movie
 	}
 	
 	/**
+     * Set movieBigFoto
+     *
+     * @param string $movieBigFoto
+     * @return Movie
+     */
+   public function setMovieBigFoto($movieBigFoto)
+    {
+        $this->movieBigFoto = $movieBigFoto;
+        return $this;
+    }
+
+    /**
+     * Get movieBigFoto
+     *
+     * @return string 
+     */
+    public function getMovieBigFoto()
+    {
+        return $this->movieBigFoto;
+	}
+	
+		/**
+     * Set movieVideo
+     *
+     * @param string $movieVideo
+     * @return Movie
+     */
+   public function setMovieVideo($movieVideo)
+    {
+        $this->movieVideo = $movieVideo;
+        return $this;
+    }
+
+    /**
+     * Get movieVideo
+     *
+     * @return string 
+     */
+    public function getMovieVideo()
+    {
+        return $this->movieVideo;
+	}
+	
+	
+	/**
      * Set addedAt
      *
      * @param string $addedAt
@@ -376,4 +494,37 @@ class Movie
     {
         return $this->addedAt;
 	}
+	
+	
+	/**
+     * Add reviews
+     *
+     * @param \Grupa\VideoNetBundle\Entity\Review $reviews
+     * @return User
+     */
+    public function addReview(\Grupa\VideoNetBundle\Entity\Review $reviews)
+    {
+        $this->reviews[] = $reviews;
+        return $this;
+    }
+
+    /**
+     * Remove reviews
+     *
+     * @param \Grupa\VideoNetBundle\Entity\Review $reviews
+     */
+    public function removeReview(\Grupa\VideoNetBundle\Entity\Review $reviews)
+    {
+        $this->reviews->removeElement($reviews);
+    }
+
+    /**
+     * Get reviews
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReviews()
+    {
+        return $this->reviews;
+    }
 }

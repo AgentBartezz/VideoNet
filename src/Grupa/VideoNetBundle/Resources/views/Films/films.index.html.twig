@@ -4,8 +4,7 @@
 {% set forum_active = '' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
-{% set count = 1 %}
-{% set link_short = "/~s176041/images/news/" %}
+{% set link_short = "http://v-ie.uek.krakow.pl/~s176041/images/movies/" %}
 
 {% block content %}
 	<section id="categories">
@@ -20,21 +19,45 @@
 	<section id="movies">
 		<header id="movies-header"><h3 id="movies-header-inner">FILMY</h3></header>
 		{% for movie in movies %}
+			{% set pY = movie.productionYear %}
+			{% if pY == "0000" %}
+				{% set pY = "b.d." %}
+			{% endif %}
+			{% set d = movie.duration %}
+			{% if d == null %}
+				{% set d = "b.d." %}
+			{% endif %}
+			{% set cP = movie.countryProduction %}
+			{% if cP == null %}
+				{% set cP = "b.d." %}
+			{% endif %}
 			<article class="movie">
-				<div class="movie-info">
-					<header class="movie-info-name">{{ movie.name }}</header>
-					<div clas="movie-info-details"><a class="movie-info-details-category" href="{{ link }}/films/{{ movie.category.name|replace({" " : "_"}) }} ">{{ movie.category.name }}</a></div>
-				</div>
+				<a href="{{ path('grupa_video_net_films_view', {'id' : movie.id }) }}">
 				<div class="movie-foto">
-					<img class="movie-foto-image" src="{{ link_short }}i{{ count }}.jpg"/>
+					<img class="movie-foto-image" src="{{ link_short }}{{ movie.movieFoto }}"/>
+				</div>
+				</a>
+				<div class="movie-info">
+					<header class="movie-info-name"><a href="{{ path('grupa_video_net_films_view', {'id' : movie.id }) }}"><h3 class="movie-info-name-inner">{{ movie.name }} ({{ pY }})</h3></a></header>
+					<div class="movie-info-details">
+						<span class="movie-info-details-category-label">Kategoria: </span><a class="movie-info-details-category" href="{{ link }}/films/{{ movie.category.name|replace({" " : "_"}) }} ">{{ movie.category.name }}</a>
+						<span class="movie-info-details-year"> | Długość: {{ d }} min | Kraj: {{ cP }}</span>
+						<hr class="movie-line"/>
+					</div>
+					<p class="movie-info-description">{{ movie.description }}</p>
+					<footer class="movie-info-footer">
+						Cena: {{ movie.price }} zł
+						<a class="movie-more" href="{{ link }}/film/view/{{ movie.id }}">WIĘCEJ..</a>
+						<button class="add-to-cart-btn" data-id="{{ movie.id }}" data-name="{{ movie.name }}">DO KOSZYKA</button>	
+					</footer>
 				</div>
 			</article>
-			{% set count = count + 1 %}
 		{% endfor %}
 	</section>
-	{% if page > 1 %}
-		<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page - 1 }}">POPRZEDNIA STRONA</a>
-	{% endif %}
-	<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page + 1 }}">NASTĘPNA STRONA</a>
-
+	<div class="paginate">
+		{% if page > 1 %}
+			<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page - 1 }}">POPRZEDNIA STRONA</a>
+		{% endif %}
+		<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page + 1 }}">NASTĘPNA STRONA</a>
+	</div>
 {% endblock %}

@@ -1,0 +1,50 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set link_short = "/~s176041/images/news/" %}
+
+	{% block content %}
+		{% for status in orderInsertStatus %}
+			{% if status == "1" %}
+				<section class="warning" style="height:500px">
+					<header class="warning-header"><h1 class="warning-header-inner">ZAMÓWIENIE ZOSTAŁO WYSŁANE</h1></header>
+					<div class="warning-content">
+						<i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i>
+						<h2>
+						PONIEWAŻ NIE DZIAŁA U NAS JESZCZE SYSTEM PŁATNOŚCI, MOŻESZ OD RAZU OGLĄDAĆ ZAMÓWIONE FILMY :)
+						</h2>
+						<a class="warning-option" href="{{ path('grupa_video_net_films') }}">MOJE FILMY</a>
+						<a class="warning-option" href="{{ path('grupa_video_net_index') }}">STRONA GŁÓWNA</a>
+					</div>
+				</section>
+			{% endif %}
+			
+			{% if status == "2" %}
+				<section class="warning">
+					<header class="warning-header"><h1 class="warning-header-inner">UWAGA</h1></header>
+					<div class="warning-content">
+						<i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i>
+						<h2>TWÓJ KOSZYK JEST PUSTY</h2>
+						<a class="warning-option" href="{{ path('grupa_video_net_films') }}">FILMY</a>
+						<a class="warning-option" href="{{ path('grupa_video_net_index') }}">STRONA GŁÓWNA</a>
+					</div>
+				</section>
+			{% endif %}
+			
+			{% if status == "3" %}
+				<section class="warning">
+					<header class="warning-header"><h1 class="warning-header-inner">UWAGA</h1></header>
+					<div class="warning-content">
+						<i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i>
+						<h2>UPPSS!! COŚ POSZŁO NIE TAK!!!</h2>
+						<a class="warning-option" href="{{ path('grupa_video_net_films') }}">FILMY</a>
+						<a class="warning-option" href="{{ path('grupa_video_net_orders') }}">JESZCZE RAZ</a>
+					</div>
+				</section>
+			{% endif %}
+		
+		{% endfor %}
+{% endblock %}

@@ -4,7 +4,7 @@
 {% set forum_active = ' active' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
-{% set link_short = "http://v-ie.uek.krakow.pl/~s176041/images/avatars/" %}
+{% set link_avatars = "http://v-ie.uek.krakow.pl/~s176041/images/avatars/" %}
 
 
 {% block content %}
@@ -15,7 +15,7 @@
 		<article class="forum-post-wrapper">
 			<div class="post-author-info">
 				<a class="post-author-nick" href="{{ link }}/profile/view/{{post.postAuthorId.id}}">{{ post.postAuthorId.username }}</a>
-				<img class="post-author-avatar" src="{{ link_short }}{{ post.postAuthorId.avatar }}"/>
+				<img class="post-author-avatar" src="{{ link_avatars }}{{ post.postAuthorId.avatar }}"/>
 				<div class="movie-meter-outer">
 					<p class="movie-meter-level">Filmometr : {{ post.postAuthorId.movieMeterLevel }}</p>
 					<p class="movie-meter-rank">Nowicjusz</p>
@@ -27,4 +27,19 @@
 		</article>
 	{% endfor %}
 	</section>
+	{% if is_granted('ROLE_USER') %}
+		<section id="quick-reply">
+			<form method="POST">
+				{{ form_row(form) }}
+			<button class="insert-forum-post" type="submit">ODPOWIEDZ</button>
+			</form>
+		</section>
+		
+	
+	{% endif %}
+	{% if not is_granted('ROLE_USER') %}
+		<section id="quick-reply-message">
+			<h4>Musisz być zalogowany aby pisać posty</h4>
+		</section>
+	{% endif %}
 {% endblock %}

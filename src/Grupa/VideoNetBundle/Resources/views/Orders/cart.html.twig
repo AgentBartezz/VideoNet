@@ -1,0 +1,60 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set link_short = "/~s176041/images/news/" %}
+{% set count = 1 %}
+{% set amount = 0 %}
+
+{% block content %}
+	<section id="cart">
+		<section id="orders">
+			<header id="orders-header"><h2 id="orders-header-inner">TWÓJ KOSZYK</h2></header>
+				<div class="desc-outer">
+				<div class="desc-id">LP</div>
+				<div class="desc-time">Tytuł ilmu</div>
+				<div class="desc-realized">Kategoria</div>
+				<div class="desc-status">Cena</div>
+				<div class="desc-details">Usuń</div>
+			</div>
+			{% for key, item in items %}
+				<article class="order">
+					<div class="order-id">{{ count }}</div>
+					<div class="order-time"><a href="{{ link }}/film/view/{{ item.id }}">{{ item.name }}</a></div>
+					<div class="order-realized">{{ item.category.name }}</div>
+					<div class="order-status">{{ item.price }}</div>
+					<div class="order-details" style="padding-top:6px;">
+						<button class="remove-from-cart" data-id="{{ key }}">USUŃ</button><br>
+					</div>
+				</article>
+				{% set amount = amount + item.price %}
+				{% set count = count + 1 %}
+			{% endfor %}
+		</section>
+		<section style="float:right; margin-bottom:20px;">
+		<div class="order-id">WARTOŚĆ KOSZYKA</div><div class="order-realized">{{ amount }}</div>
+		</section>
+		<section style="clear:both; margin:20px auto; width:960px; text-align:center;">
+		{% if not is_granted('ROLE_USER') %}
+			{% if amount == 0 %}
+				<h2>TWÓJ KOSZYK JEST PUSTY</h2>
+			{% endif %}
+			{% if amount > 0 %}
+				<h3>Musisz być zalogowany aby kontynuować</h3>
+				<a class="cart-option" href="{{ path('fos_user_security_login') }}">LOGOWANIE</a>
+				<a class="cart-option" href="{{ path('fos_user_registration_register') }}">REJESTRACJA</a>
+			{% endif %}
+		{% endif %}
+		{% if is_granted('ROLE_USER') %}
+			{% if amount == 0 %}
+				<h2>TWÓJ KOSZYK JEST PUSTY</h2>
+			{% endif %}
+			{% if amount > 0 %}
+				<a class="cart-option" id="wide" href="{{ path('grupa_video_net_orders_add') }}">WYŚLIJ ZAMÓWIENIE</a>
+			{% endif %}
+		{% endif %}
+		</section>
+	</section>
+{% endblock %}

@@ -51,13 +51,56 @@ class FilmsController extends Controller
 		);
     }
 	
-	public function filmsViewAction() {
+	public function filmsViewAction($id) {
+		$link = $_SERVER["SCRIPT_NAME"];
+		$session = new Session();
+		
+		$reviewInfo = $session->get("reviewInfo");
+			if($reviewInfo == 1) {
+				$session->set("reviewInfo", 0);
+			} else { $reviewInfo = 0; }
+		
+		$em = $this->getDoctrine()->getManager();
+		$movie = $em->getRepository('GrupaVideoNetBundle:Movie')->find($id);
+		$movie_id = $movie->getId();
+		
+		$reviews = $em->getRepository('GrupaVideoNetBundle:Review')->findBy(
+				   array('movie' => $movie),
+				   array('reviewTime' => 'ASC' ),
+				   5,
+				   0
+			);;
+		
 		return $this->render(
 			'GrupaVideoNetBundle:Films:films.view.html.twig',
 			array (
-				'var1' => 'jeden',
-				'var2' => 'dwa',
+				'link' => $link,
+				'movie' => $movie,
+				'reviews' => $reviews,
+				'reviewInfo' => $reviewInfo
 			)
 		);
     }
+	
+	
+	public function myMoviesAction() {
+		
+		return $this->render(
+			'GrupaVideoNetBundle:Films:myMovies.html.twig',
+			array (
+				
+			)
+		
+	}
+	
+	
+	public function watchAction($id) {
+		
+		return $this->render(
+			'GrupaVideoNetBundle:Films:watch.html.twig',
+			array (
+				
+			)
+		
+	}
 }

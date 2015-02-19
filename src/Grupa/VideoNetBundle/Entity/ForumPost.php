@@ -19,11 +19,6 @@ class ForumPost
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-	
-	/**
-     * @ORM\Column(type="integer", name="post_author_id")
-     */
-    protected $author;
 
 	/**
      * @ORM\ManyToOne(targetEntity="ForumTopic", inversedBy="posts")
@@ -59,9 +54,9 @@ class ForumPost
     protected $content;
 	
 	/**
-     * @ORM\Column(type="integer", name="post_status")
+     * @ORM\Column(type="integer", name="post_status", options={"default" = "0" })
      */
-    protected $status;
+    protected $status = "0";
 
     /**
      * Get id
@@ -71,29 +66,6 @@ class ForumPost
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set author
-     *
-     * @param integer $author
-     * @return ForumPost
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return integer 
-     */
-    public function getAuthor()
-    {
-        return $this->author;
     }
 
   
@@ -165,6 +137,35 @@ class ForumPost
     {
         return $this->topic;
     }
+	
+	
+	
+	
+	
+	/**
+     * Set section
+     *
+     * @param \Grupa\VideoNetBundle\Entity\ForumTopic $section
+     * @return ForumSection
+     */
+    public function setSection(\Grupa\VideoNetBundle\Entity\ForumSection $section = null)
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    /**
+     * Get section
+     *
+     * @return \Grupa\VideoNetBundle\Entity\ForumSection
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
+	
+	
 	
 	
 	
