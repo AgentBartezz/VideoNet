@@ -439,12 +439,12 @@ h2, h3, h4, h5 {
 }
 
 .drop-option {
-	height:70px;
+	height:56px;
 	display:block;
 	border-bottom:1px solid #00001f;
 	width:100%;
 	text-align:center;
-	padding-top:25px;
+	padding-top:18px;
 	font-size:16px;
 	font-family:"Oxygen";
 	text-decoration:none;
@@ -2177,6 +2177,7 @@ input#password:focus {
 	width:100%;
 }
 
+
 @media screen and (max-width:767px) {
 	#under-bars {
 		width:100%;
@@ -2476,10 +2477,28 @@ input#password:focus {
 	}
 }
 
+
 @media screen and (max-width:790px) {
 	#search-form {
 		width:calc(100% - 280px);
 		border:0;
+	}
+}
+
+
+@media screen and (min-width:961px) {
+	@keyframes i-hov {
+		0%{font-size:26px;}
+		33%{font-size:18px;}
+		66%{font-size:33px;}
+		100%{font-size:26px;}
+	}
+
+	@-webkit-keyframes i-hov {
+		0%{font-size:26px;}
+		33%{font-size:18px;}
+		66%{font-size:33px;}
+		100%{font-size:26px;}
 	}
 }
 
@@ -2637,19 +2656,7 @@ input#password:focus {
 		padding:1px;
 	}
 	
-	@keyframes i-hov {
-		0%{font-size:26px;}
-		33%{font-size:18px;}
-		66%{font-size:33px;}
-		100%{font-size:26px;}
-	}
 
-	@-webkit-keyframes i-hov {
-		0%{font-size:26px;}
-		33%{font-size:18px;}
-		66%{font-size:33px;}
-		100%{font-size:26px;}
-	}
 	
 	#categories {
 		background:#00001f;
@@ -2811,11 +2818,6 @@ input#password:focus {
 		text-align:left;
 	}
 
-}
-
-
-@media screen and (min-width:961px) and (max-width:1379px) {
-	
 }
 
 

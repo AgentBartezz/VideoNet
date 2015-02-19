@@ -66,7 +66,7 @@ class FilmsController extends Controller
 		
 		$reviews = $em->getRepository('GrupaVideoNetBundle:Review')->findBy(
 				   array('movie' => $movie),
-				   array('reviewTime' => 'ASC' ),
+				   array('reviewTime' => 'DESC' ),
 				   5,
 				   0
 			);;
@@ -82,25 +82,44 @@ class FilmsController extends Controller
 		);
     }
 	
-	
 	public function myMoviesAction() {
+		$link = $_SERVER["SCRIPT_NAME"];
+		$em = $this->getDoctrine()->getManager();
+		$user = $this->getUser();
+		
+		$orders = $em->getRepository('GrupaVideoNetBundle:Orders')->findByUser($user);
 		
 		return $this->render(
 			'GrupaVideoNetBundle:Films:myMovies.html.twig',
 			array (
-				
+				'link' => $link,
+				'orders' => $orders
 			)
-		
+		);
 	}
 	
-	
 	public function watchAction($id) {
+		$link = $_SERVER["SCRIPT_NAME"];
+		
+		$em = $this->getDoctrine()->getManager();
+		$movie = $em->getRepository('GrupaVideoNetBundle:Movie')->find($id);
+		$movie_id = $movie->getId();
+		
+		$reviews = $em->getRepository('GrupaVideoNetBundle:Review')->findBy(
+				   array('movie' => $movie),
+				   array('reviewTime' => 'DESC' ),
+				   10,
+				   0
+			);;
+		
 		
 		return $this->render(
 			'GrupaVideoNetBundle:Films:watch.html.twig',
 			array (
-				
+				'link' => $link,
+				'movie' => $movie,
+				'reviews' => $reviews
 			)
-		
+		);
 	}
 }

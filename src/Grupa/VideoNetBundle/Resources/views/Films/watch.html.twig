@@ -1,0 +1,70 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = ' active' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set link_avatars = "http://v-ie.uek.krakow.pl/~s176041/images/avatars/" %}
+
+{% block content %}
+	{% if not is_granted('ROLE_USER') %}
+		<section class="warning">
+			<header class="warning-header"><h1 class="warning-header-inner">UWAGA</h1></header>
+			<div class="warning-content">
+				<i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i>
+				<h2>Musisz być zalogowany aby zobaczyć tę stronę</h2>
+				<a class="warning-option" href="{{ path('fos_user_security_login') }}">LOGOWANIE</a>
+				<a class="warning-option" href="{{ path('fos_user_registration_register') }}">REJESTRACJA</a>
+			</div>
+		</section>
+	{% endif %}
+	{% if is_granted('ROLE_USER') %}
+		<h2>Teraz oglądasz: {{ movie.name }}</h2>
+		<section id="trailers-container" style='height:450px; margin-bottom:30px;'>
+			<video class="trailer-player" width="100%" height="100%" controls>
+				<source class="trailer-player-source" src="{{ movie.movieVideo }}" type="video/mp4">
+				Twoja przeglądarka nie obłsuguje tego odtwarzacza.
+			</video>
+		</section>
+		<div id="view-movie-description" style="clear:both; margin:30px 0;">
+			{{ movie.description }}
+		</div>
+		<div id="view-movie-reviews" style="clear:both; margin:30px 0;">
+			{% if reviews != null %}
+				<h3>Ostatnie recenzje</h3>
+			{% endif %}
+			{% if reviews == null %}
+				<h3>Ten film nie ma jeszcze recenzji</h3>
+			{% endif %}
+			{% set reviewUser = 0 %}
+			{% for review in reviews %}
+				<article class="view-movie-review" style="margin-bottom:5px;">
+					<div class="view-movie-review-author-avatar">
+						<img class="view-movie-avatar" src="{{ link_avatars }}{{ review.user.avatar }}"/>
+					</div>
+					<div class="view-movie-review-details">
+						<div class="view-movie-review-info">
+							<a href="{{ path('grupa_video_net_profile_view', {'id':review.user.id}) }}">{{ review.user.username }}</a> {{ review.reviewTime|date('d-m-Y') }}
+						</div>
+						<div class="view-movie-review-content">
+							{{ review.content }}
+						</div>
+					</div>
+				</article>
+				{% if is_granted('ROLE_USER') %}
+					{% if review.user.id == app.user.id %}
+						{% set reviewUser = 1 %}
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+			
+			{% if is_granted('ROLE_USER') %}
+				{% if reviewUser == 1 %}
+					Napisałeś już recenzję do tego filmu.
+				{% else %}
+					<a class="add-review" href="{{ path('grupa_video_net_review_add', {'id': movie.id}) }}">DODAJ RECENZJĘ</a>
+				{% endif %}
+			{% endif %}
+	
+	{% endif %}
+{% endblock %}

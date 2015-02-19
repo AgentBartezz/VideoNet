@@ -23,7 +23,7 @@ grupa_video_net_films_view:
 grupa_video_net_mymovies:
     path:     /myMovies
     defaults: { _controller: GrupaVideoNetBundle:Films:myMovies }
-grupa_video_net_films_watch:
+grupa_video_net_film_watch:
     path:     /film/watch/{id}
     defaults: { _controller: GrupaVideoNetBundle:Films:watch }
 grupa_video_net_review_add:
