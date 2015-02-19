@@ -1,0 +1,27 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = ' active' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+
+{% block content %}
+	<section id="account-popup" style="margin:10px auto 100px; height:520px; position:relative; top:0; left:0">
+		<header class="popup-header">
+			<h2 class="popup-header-inner">REJESTRACJA<h2>
+		</header>
+		<div id="popup-right-box" style="width:100%; margin-top:30px;">
+			<div id="login-popup-form" class="absolute">
+				<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" id="login-popup-form-inner">
+					{{ form_errors(form.plainPassword.first) }}
+					{{ form_label(form.username, 'Nazwa użytkownika', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.username, {'attr' : {'class':'add-movie-input-title add-movie-input'}}) }}
+					{{ form_label(form.email, 'Adres email', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.email, {'attr' : {'class':'add-movie-input-title add-movie-input'}}) }}
+					{{ form_label(form.plainPassword.first, 'Hasło', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.plainPassword.first, {'attr' : {'class':'add-movie-input-title add-movie-input'}}) }}
+					{{ form_label(form.plainPassword.second, 'Potwierdź hasło', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.plainPassword.second, {'attr' : {'class':'add-movie-input-title add-movie-input'}}) }}
+					{{ form_rest(form) }}
+					<button class="register-submit" style="margin-top:30px;" type="submit">ZAREJESTRUJ SIĘ</button>
+				</form>
+			</div>
+		</div>
+	</section>
+{% endblock %}

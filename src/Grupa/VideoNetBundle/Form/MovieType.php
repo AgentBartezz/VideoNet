@@ -16,31 +16,17 @@ class MovieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', 
-				array(
-					'label' => 'Tytuł filmu'
-				)
-			)
-            ->add('price', 'number',
-				array(
-					'label' => 'Cena'
-				)
-			)
-			->add('description', 'textarea',
-				array(
-					'label' => 'Opis'
-				)
-			)
+            ->add('name')
+            ->add('price', 'number')
+			->add('description', 'textarea')
 			->add('premiere_poland', 'date', 
 				array(
-					'years' => range(date('Y') - 70, date('Y') + 10),
-					'label' => 'Premiera w Polsce'
+					'years' => range(date('Y') - 70, date('Y') + 10)
 				)
 			)
 			->add('premiere_world', 'date', 
 				array(
-					'years' => range(date('Y') - 70, date('Y') + 10),
-					'label' => 'Premiera światowa'
+					'years' => range(date('Y') - 70, date('Y') + 10)
 				)
 			)
 			->add('production_year', 'choice', 
@@ -53,28 +39,29 @@ class MovieType extends AbstractType
 							range(date('Y') - 70, date('Y') + 10)
 							)
 						),
-					'placeholder' => 'Wybierz..',
-					'label' => 'Rok produkcji'
+					'placeholder' => 'Wybierz..'
 				)
 			)
 			->add('isHit', 'checkbox', 
 				array(
-					'label' => 'Hit',
 					'required' => false,
 				)
 			)
 			->add('isSuperHit', 'checkbox', 
 				array(
-					'label' => 'Super Hit',
 					'required' => false
 				)
 			)
+			->add('movieFoto')
+			->add('movieBigFoto')
+			->add('movieVideo')
+			->add('duration')
+			->add('countryProduction')
 			->add('category', 'entity', 
 				array(
 					'class' => 'GrupaVideoNetBundle:MovieCategory',
 					'property' => 'name',
 					'multiple' => false,
-					'label' => 'Kategoria',
 				)
 			)
 		;

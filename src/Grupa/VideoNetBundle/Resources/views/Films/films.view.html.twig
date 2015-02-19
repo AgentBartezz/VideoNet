@@ -4,3 +4,94 @@
 {% set forum_active = '' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
+{% set link_movies = "http://v-ie.uek.krakow.pl/~s176041/images/movies/" %}
+{% set link_avatars = "http://v-ie.uek.krakow.pl/~s176041/images/avatars/" %}
+{% set pY = movie.productionYear %}
+{% if pY == "0000" %}
+	{% set pY = "b.d." %}
+{% endif %}
+{% set d = movie.duration %}
+{% if d == null %}
+	{% set d = "b.d." %}
+{% endif %}
+{% set cP = movie.countryProduction %}
+{% if cP == null %}
+	{% set cP = "b.d." %}
+{% endif %}
+
+{% block content %} 
+	{% if reviewInfo == 1 %}
+		<div class='cart-info'>Twoja recenzja została dodana.<br>Zanim pojawi się w serwisie, musi zostać zaakceptowana przez administratora<br><span class='cart-info-close'>ZAMKNIJ</span></div>
+	{% endif %}
+	<section id="view-movie">
+		<header id="view-movie-header"><h2 id="view-movie-header-inner">{{ movie.name }} ({{ pY }})</h2></header>
+		<div id="view-movie-content">
+			<div id="view-movie-image">
+				<img src="{{ link_movies }}{{ movie.movieFoto }}"/>
+			</div>
+			<div id="view-movie-details">
+				<div class="details-names">
+					<div class="detail-name">Kategoria</div>
+					<div class="detail-name">Kraj produkcji</div>
+					<div class="detail-name">Czas trwania</div>
+					<div class="detail-name">Premiera w Polsce</div>
+					<div class="detail-name">Premiera światowa</div>
+				</div>
+				<div class="details-values">
+					<div class="detail-value">{{ movie.category.name }}</div>
+					<div class="detail-value">{{ cP }}</div>
+					<div class="detail-value">{{ d }} min</div>
+					<div class="detail-value">{{ movie.premierePoland|date('d-m-Y') }}</div>
+					<div class="detail-value">{{ movie.premiereWorld|date('d-m-Y') }}</div>
+				</div>
+			</div>
+			<div id="view-movie-details2">
+				<div id="view-movie-price">
+					Cena: <span class="vm-price">{{ movie.price }} zł</span>
+				</div>
+				<button class="add-to-cart-btn" data-id="{{ movie.id }}" data-name="{{ movie.name }}">DO KOSZYKA</button>
+			</div>
+			<div id="view-movie-description">
+				{{ movie.description }}
+			</div>
+		</div>
+		<div id="view-movie-reviews" style="margin:30px 0;">
+			{% if reviews != null %}
+				<h3>Ostatnie recenzje</h3>
+			{% endif %}
+			{% if reviews == null %}
+				<h3>Ten film nie ma jeszcze recenzji</h3>
+			{% endif %}
+			{% set reviewUser = 0 %}
+			{% for review in reviews %}
+				<article class="view-movie-review" style="margin-bottom:5px;">
+					<div class="view-movie-review-author-avatar">
+						<img class="view-movie-avatar" src="{{ link_avatars }}{{ review.user.avatar }}"/>
+					</div>
+					<div class="view-movie-review-details">
+						<div class="view-movie-review-info">
+							<a href="{{ path('grupa_video_net_profile_view', {'id':review.user.id}) }}">{{ review.user.username }}</a> {{ review.reviewTime|date('d-m-Y') }}
+						</div>
+						<div class="view-movie-review-content">
+							{{ review.content }}
+						</div>
+					</div>
+				</article>
+				{% if is_granted('ROLE_USER') %}
+					{% if review.user.id == app.user.id %}
+						{% set reviewUser = 1 %}
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+			
+			{% if is_granted('ROLE_USER') %}
+				{% if reviewUser == 1 %}
+					Napisałeś już recenzję do tego filmu.
+				{% else %}
+					<a class="add-review" href="{{ path('grupa_video_net_review_add', {'id': movie.id}) }}">DODAJ RECENZJĘ</a>
+				{% endif %}
+			{% endif %}
+			
+		</div>
+	</section>
+{% endblock %}

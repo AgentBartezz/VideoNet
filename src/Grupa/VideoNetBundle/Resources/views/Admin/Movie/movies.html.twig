@@ -1,0 +1,32 @@
+{% extends "GrupaVideoNetBundle::Admin/layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set link_short = "http://v-ie.uek.krakow.pl/~s176041/images/movies/" %}
+
+{% block content %}
+<section id="admin-movies">
+		<a class="to-add-movie" href="{{ link }}/admin/movie/add"/>DODAJ NOWY FILM</a>
+		<header id="admin-movies-header"><h3 id="admin-movies-header-inner">FILMY</h3></header>
+		{% for movie in movies %}
+			<article class="admin-movie">
+				<div class="admin-movie-foto">
+					<img class="admin-movie-foto-image" src="{{ link_short }}/default.png"/>
+				</div>
+				<div class="admin-movie-info">
+					<h3 class="admin-movie-info-name">{{ movie.name }}</h3>
+				</div>
+				<div class="admin-movie-options">
+				<a class="admin-movie-option admin-edit-movie" href="{{ link }}/admin/movie/edit/{{ movie.id }}">EDYTUJ</a>
+				<button class="admin-movie-option admin-remove-movie">USUŃ</button>
+				{#<a href="{{ link }}/admin/movie/remove/{{ movie.id }}">USUŃ</a>#}
+			</article>
+		{% endfor %}
+	</section>
+	{% if page > 1 %}
+		<a href="{{ link }}/admin/movies/{{ page - 1 }}">POPRZEDNIA STRONA</a>
+	{% endif %}
+	<a href="{{ link }}/admin/movies/{{ page + 1 }}">NASTĘPNA STRONA</a>
+{% endblock %}

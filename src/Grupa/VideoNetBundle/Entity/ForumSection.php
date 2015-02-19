@@ -37,6 +37,7 @@ class ForumSection
 	
 	/**
      * @ORM\OneToMany(targetEntity="ForumPost", mappedBy="section")
+	 * @ORM\OrderBy({"postTime" = "ASC"})
      */
 	protected $posts;
 	

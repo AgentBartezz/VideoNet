@@ -4,6 +4,7 @@
 {% set forum_active = ' active' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
+{% set link_avatars = "http://v-ie.uek.krakow.pl/~s176041/images/avatars/" %}
 
 {% block content %}
 	{% for category in categories %}
@@ -11,7 +12,31 @@
 			<header class="forum-category-name"><h2 class="forum-category-name-inner">{{ category.name }}</h2></header>
 			{% for section in category.sections %}
 				<article class="forum-section">
-					<header class="forum-section-name"><h3 class="forum-section-name-inner"><a href="{{ link }}/forum/section/{{ section.id }}">{{ section.name }}</a></h3></header>
+					<div class="forum-section-status-icon">
+						{% if section.status == 0 %}
+							<i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i>
+						{% endif %}
+						{% if section.status == 1 %}
+							<i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
+						{% endif %}
+					</div>
+					<div class="forum-section-info">
+						<header class="forum-section-name"><h3 class="forum-section-name-inner"><a href="{{ link }}/forum/section/{{ section.id }}">{{ section.name }}</a></h3></header>
+					</div>
+					<div class="forum-last-post-info">
+						{% if section.getPosts().last() != "" %}
+							<div class="last-post-author-avatar">
+								<a href="{{ link }}/profile/view/{{ section.getPosts().last().postAuthorId.id }}">
+									<img class="last-post-author-image" src="{{ link_avatars }}{{ section.getPosts().last().postAuthorId.avatar }}"/>
+								</a>
+							</div>
+							<div class="last-post-info">
+								<a href="{{ link }}/profile/view/{{ section.getPosts().last().postAuthorId.id }}">{{ section.getPosts().last().postAuthorId.username }}</a><br>
+								<a href="{{ link }}/forum/section/{{ section.id }}/topic/{{ section.getPosts().last().topic.id }}">{{ section.getPosts().last().topic.name }}</a><br>
+								{{ section.getPosts().last().postTime|date('d-m-Y H:i') }}
+							</div>
+						{% endif %}
+					</div>
 				</article>
 			{% endfor %}
 		</section>

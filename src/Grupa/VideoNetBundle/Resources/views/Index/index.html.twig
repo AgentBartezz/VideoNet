@@ -4,6 +4,7 @@
 {% set forum_active = '' %}
 {% set cos_active = '' %}
 {% set kontakt_active = '' %}
+{% set link_movies = "http://v-ie.uek.krakow.pl/~s176041/images/movies/" %}
 
 {% block content %}
 
@@ -14,48 +15,19 @@
 			<button id="news-prev" data-slide="9"><i class="glyphicon glyphicon-chevron-left" aria-hidden="true"></i></button>
 			<div id="slider-news-inner">
 				<div id="slider-news-preview">
-					<a class="slider-news-link" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i1.jpg') }}"/>
+					{% for movie in lastAdded %}
+					<a class="slider-news-link" style="display:none" href="{{ path('grupa_video_net_films_view', {'id': movie.id}) }}">
+						<div class="slider-movie-details">{{ movie.name }} ({{ movie.productionYear }})</div>
+						<img class="slider-news-image" src="{{ asset('images/movies/' ~ movie.movieBigFoto ~'') }}"/>
 					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i2.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i3.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i4.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i5.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i6.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i7.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i8.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i9.jpg') }}"/>
-					</a>
-					<a class="slider-news-link" style="display:none" href="#">
-						<img class="slider-news-image" src="{{ asset('images/news/i10.jpg') }}"/>
-					</a>
+					{% endfor %}
 				</div>
 				<div id="slider-news-jumpers">
-					<button class="slider-news-jumper" disabled="disabled"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
-					<button class="slider-news-jumper"></button>
+					{% for movie in lastAdded %}
+					<button class="slider-news-jumper">
+						<img class="slider-news-jumper-image" src="{{ asset('images/movies/' ~ movie.movieFoto ~'') }}"/>
+					</button>
+					{% endfor %}
 				</div>
 			</div>
 			<button id="news-next" data-slide="1"><i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i></button>
@@ -63,66 +35,49 @@
 	</section>
 	<div id="sliders-row2">
 		<section id="slider-hits-outer">
-			<header class="box-header"><h3 class="box-header-content">HITY</h3></header>
+			<header class="box-header"><h3 class="box-header-content">NAJCZĘŚĆIEJ KUPOWANE</h3></header>
 			<div id="slider-hits">
 				<button id="hits-prev" data-slide="9">PR</button>
 				<div id="slider-hits-inner">
 					<div id="slider-hits-preview">
-						<a class="slider-hits-link" href="#">
-							<img class="slider-hits-image" src="{{ asset('images/news/i1.jpg') }}"/>
+						{% for movie in mostPurchased %}
+						<a class="slider-hits-link" style="display:none" href="{{ path('grupa_video_net_films_view', {'id': movie.mov.id }) }}">
+							<div class="slider-movie-details">{{ movie.mov.name }} ({{ movie.mov.productionYear }})</div>
+							<img class="slider-hits-image" src="{{ asset('images/movies/' ~ movie.mov.movieBigFoto ~'') }}"/>
 						</a>
-						<a class="slider-hits-link" style="display:none" href="#">
-							<img class="slider-hits-image" src="{{ asset('images/news/i2.jpg') }}"/>
-						</a>
-						<a class="slider-hits-link" style="display:none" href="#">
-							<img class="slider-hits-image" src="{{ asset('images/news/i3.jpg') }}"/>
-						</a>
-						<a class="slider-hits-link" style="display:none" href="#">
-							<img class="slider-hits-image" src="{{ asset('images/news/i4.jpg') }}"/>
-						</a>
-						<a class="slider-hits-link" style="display:none" href="#">
-							<img class="slider-hits-image" src="{{ asset('images/news/i5.jpg') }}"/>
-						</a>
+						{% endfor %}
 					</div>
 					<div id="slider-hits-jumpers">
-						<button class="slider-hits-jumper" disabled="disabled"></button>
-						<button class="slider-hits-jumper"></button>
-						<button class="slider-hits-jumper"></button>
-						<button class="slider-hits-jumper"></button>
-						<button class="slider-hits-jumper"></button>
+						{% for movie in mostPurchased %}
+						<button class="slider-hits-jumper">
+							<img class="slider-news-jumper-image" src="{{ asset('images/movies/' ~ movie.mov.movieFoto ~'') }}"/>
+						</button>
+						{% endfor %}
 					</div>
 				</div>
 				<button id="hits-next" data-slide="1">NE</button>
 			</div>
 		</section>
 		<section id="slider-top-outer">
-			<header class="box-header"><h3 class="box-header-content">NAJWYŻEJ OCENIANE</h3></header>
+			<header class="box-header"><h3 class="box-header-content">NAJCZĘŚCIEJ RECENZOWANE</h3></header>
 			<div id="slider-top">
 				<button id="top-prev" data-slide="9">PR</button>
 				<div id="slider-top-inner">
 					<div id="slider-top-preview">
-						<a class="slider-top-link" href="#">
-							<img class="slider-top-image" src="{{ asset('images/news/i1.jpg') }}"/>
+						{% for movie in mostRev %}
+						<a class="slider-top-link" style="display:none" href="{{ path('grupa_video_net_films_view', {'id': movie.rev.movie.id }) }}">
+							<div class="slider-movie-details">{{ movie.rev.movie.name }} ({{ movie.rev.movie.productionYear }})</div>
+							<img class="slider-top-image" src="{{ asset('images/movies/' ~ movie.rev.movie.movieBigFoto ~'') }}"/>
 						</a>
-						<a class="slider-top-link" style="display:none" href="#">
-							<img class="slider-top-image" src="{{ asset('images/news/i2.jpg') }}"/>
-						</a>
-						<a class="slider-top-link" style="display:none" href="#">
-							<img class="slider-top-image" src="{{ asset('images/news/i3.jpg') }}"/>
-						</a>
-						<a class="slider-top-link" style="display:none" href="#">
-							<img class="slider-top-image" src="{{ asset('images/news/i4.jpg') }}"/>
-						</a>
-						<a class="slider-top-link" style="display:none" href="#">
-							<img class="slider-top-image" src="{{ asset('images/news/i5.jpg') }}"/>
-						</a>
+						{% endfor %}
+						
 					</div>
 					<div id="slider-top-jumpers">
-						<button class="slider-top-jumper" disabled="disabled"></button>
-						<button class="slider-top-jumper"></button>
-						<button class="slider-top-jumper"></button>
-						<button class="slider-top-jumper"></button>
-						<button class="slider-top-jumper"></button>
+						{% for movie in mostRev %}
+						<button class="slider-top-jumper">
+							<img class="slider-news-jumper-image" src="{{ asset('images/movies/' ~ movie.rev.movie.movieFoto ~'') }}"/>
+						</button>
+						{% endfor %}
 					</div>
 				</div>
 				<button id="top-next" data-slide="1">NE</button>

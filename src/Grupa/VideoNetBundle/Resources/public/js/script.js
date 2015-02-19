@@ -33,6 +33,12 @@ function loginForm() {
 }
 
 $(window).load(function() {
+	$(".slider-news-link").first().fadeIn();
+	$(".slider-top-link").first().fadeIn();
+	$(".slider-hits-link").first().fadeIn();
+	$(".slider-news-jumper").first().attr("disabled", "disabled");
+	$(".slider-top-jumper").first().attr("disabled", "disabled");
+	$(".slider-hits-jumper").first().attr("disabled", "disabled");
 	$("#toggle-menu").click(function() {
 		$("#menu").toggleClass("collapsed-3").toggleClass("expanded-3");
 	});
@@ -98,8 +104,8 @@ $(window).load(function() {
 	$("#news-prev").click(function() {
 		var i = $(this).attr("data-slide");
 		if(i==0){p=9;}else{p=i-1;}if(p==9){n=1;}else if(p==8){n=0;}else{n=p+2;}
-		$(".slider-news-link").fadeOut(1000);
-		$(".slider-news-link").eq(i).fadeIn(1000);
+		$(".slider-news-link").fadeOut(400);
+		$(".slider-news-link").eq(i).fadeIn(400);
 		$(this).attr("data-slide", p);
 		$("#news-next").attr("data-slide", n);
 		$(".slider-news-jumper").removeAttr("disabled");
@@ -109,8 +115,8 @@ $(window).load(function() {
 	$("#news-next").click(function() {
 		var i = $(this).attr("data-slide");
 		if(i==9){n=0;}else{n=i-1;n=n+2}if(n==0){p=8;}else if(n==1){p=9;}else{p=n-2;}
-		$(".slider-news-link").fadeOut(1000);
-		$(".slider-news-link").eq(i).fadeIn(1000);
+		$(".slider-news-link").fadeOut(400);
+		$(".slider-news-link").eq(i).fadeIn(400);
 		$(this).attr("data-slide", n);
 		$("#news-prev").attr("data-slide", p);
 		$(".slider-news-jumper").removeAttr("disabled");
@@ -121,13 +127,34 @@ $(window).load(function() {
 		var i = $(this).index();
 		if(i==0){p = 9}else{p = i - 1;}
 		if(p==9){n = 1}else if(p==8){n = 0;}else{n = p + 2;}
-		$(".slider-news-link").fadeOut(1000);
-		$(".slider-news-link").eq(i).fadeIn(1000);
+		$(".slider-news-link").fadeOut(400);
+		$(".slider-news-link").eq(i).fadeIn(400);
 		$("#news-next").attr("data-slide", n);
 		$("#news-prev").attr("data-slide", p);
 		$(".slider-news-jumper").removeAttr("disabled");
 		$(this).attr("disabled", "disabled");
 	});
+	
+	$(".slider-top-jumper").click(function(){
+		var i = $(this).index();
+		$(".slider-top-link").fadeOut(400);
+		$(".slider-top-link").eq(i).fadeIn(400);
+		$(".slider-top-jumper").removeAttr("disabled");
+		$(this).attr("disabled", "disabled");
+	});
+	
+	$(".slider-hits-jumper").click(function(){
+		var i = $(this).index();
+		$(".slider-hits-link").fadeOut(400);
+		$(".slider-hits-link").eq(i).fadeIn(400);
+		$(".slider-hits-jumper").removeAttr("disabled");
+		$(this).attr("disabled", "disabled");
+	});
+	
+	$("body").on("click", "span.cart-info-close" ,function() {
+		$(".cart-info").remove();
+	});
+	
 	
 	
 	

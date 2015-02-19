@@ -1,0 +1,61 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set link_short = "/~s176041/images/news/" %}
+
+{% block content %}
+{% if not is_granted('ROLE_USER') %}
+	<section class="warning">
+		<header class="warning-header"><h1 class="warning-header-inner">UWAGA</h1></header>
+		<div class="warning-content">
+			<i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i>
+			<h2>Musisz być zalogowany aby zobaczyć tę stronę</h2>
+			<a class="warning-option" href="{{ path('fos_user_security_login') }}">LOGOWANIE</a>
+			<a class="warning-option" href="{{ path('fos_user_registration_register') }}">REJESTRACJA</a>
+		</div>
+	</section>
+{% endif %}
+{% if is_granted('ROLE_USER') %}
+	<section id="orders">
+		<header id="orders-header"><h2 id="orders-header-inner">TWOJE ZAMÓWIENIA</h2></header>
+			<div class="desc-outer">
+			<div class="desc-id">Identyfikator</div>
+			<div class="desc-time">Data złożenia zamówienia</div>
+			<div class="desc-realized">Data zrealizowania</div>
+			<div class="desc-status">Status</div>
+			<div class="desc-details">Szczegóły</div>
+		</div>
+		{% for order in orders %}
+			<article class="order">
+				<div class="order-id">
+					{{ order.id }}
+				</div>
+				<div class="order-time">
+					{{ order.orderTime|date('d-m-Y') }}
+				</div>
+				<div class="order-realized">
+					{% set s = order.orderRealizedTime %}
+					{% if s == null %}
+						{% set status =	"Czeka na realizację" %}
+						{{ s }}
+					{% endif %}
+					{% if s!= null %}
+						{% set status =	"Zrealizowano" %}
+						{{ s|date('d-m-Y') }}
+					{% endif %}
+				</div>
+				<div class="order-status">
+					{{ status }}
+				</div>
+				<div class="order-details">
+					<a href="{{ path('grupa_video_net_order', {'id': order.id }) }}">SZCZEGÓŁY</a>
+				</div>
+			</article>
+		{% endfor %}
+	</section>
+{% endif %}
+
+{% endblock %}

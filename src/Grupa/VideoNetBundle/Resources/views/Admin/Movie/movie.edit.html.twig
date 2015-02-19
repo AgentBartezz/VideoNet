@@ -22,7 +22,7 @@
 	{{ form_label(form.duration, 'Czas trwania (w minutach)', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.duration, {'attr' : {'class':'add-movie-input-title add-movie-input'}}) }}
 	
 	{{ form_label(form.countryProduction, 'Kraj produkcji', {'label_attr' : {'class':'add-movie-label'}}) }}{{ form_widget(form.countryProduction, {'attr' : {'class':'add-movie-input-title add-movie-input'}}) }}
-		
+	
 	<div id="additional-checks">
 		{{ form_label(form.isHit, 'Dodać do kategorii hit?', {'label_attr' : {'class':'add-movie-label check-label'}}) }}{{ form_widget(form.isHit, {'attr' : {'class':'add-movie-check'}}) }}<br>
 		{{ form_label(form.isSuperHit, 'Wyświetlać jako superhit?', {'label_attr' : {'class':'add-movie-label check-label'}}) }}{{ form_widget(form.isSuperHit, {'attr' : {'class':'add-movie-check'}}) }}
@@ -52,6 +52,7 @@
 	</div>
 	<div class="footer-buttons">
 		<a class="form-back" href="{{ link }}/admin/movies">WRÓC</a>
+		<button type="button" class="form-remove-movie">USUŃ</button>
 		<button type="submit" class="form-add-movie">WYŚLIJ</button>
 	</div>
 {{ form_end(form) }}

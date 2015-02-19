@@ -1,0 +1,24 @@
+{% extends "GrupaVideoNetBundle::Admin/layout.html.twig" %}
+{% set start_active = '' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+
+
+{% block content %}
+<div class="admin-index">
+	<div class="admin-links-row">
+		<a class="admin-link" href="{{ link }}/admin/movies"><i class="glyphicon glyphicon-film" aria-hidden="true"></i><span>Zarządzaj<br>filmami<span></a>
+		<a class="admin-link" href="{{ link }}/admin/forum"><i class="glyphicon glyphicon-comment" aria-hidden="true"></i><span>Zarządzaj<br>forum<span></a>
+	</div>
+	<div class="admin-links-row"> 
+		<a class="admin-link" href="{{ link }}/admin/users"><i class="glyphicon glyphicon-user" aria-hidden="true"></i><span>Zarządzaj<br>użytkownikami</span></a>
+		<a class="admin-link" href="{{ link }}/admin/competitions"><i class="glyphicon glyphicon-gift" aria-hidden="true"></i><span>Zarządzaj<br>konkursami</span></a>
+	</div>
+	<div class="admin-links-row"> 
+		<a class="admin-link" href="{{ link }}/admin/quotations"><i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i><span>Zarządzaj<br>ankietami<span></a>
+		<a class="admin-link" href="{{ link }}/admin/firm"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><span>Zarządzaj<br>danymi firmy<span></a>
+	</div>
+</div>
+{% endblock %}
