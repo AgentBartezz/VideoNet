@@ -1,0 +1,56 @@
+{% extends "GrupaVideoNetBundle::layout.html.twig" %}
+{% set start_active = ' active' %}
+{% set filmy_active = '' %}
+{% set forum_active = '' %}
+{% set cos_active = '' %}
+{% set kontakt_active = '' %}
+{% set count = 1 %}
+
+
+{% block content %}
+	{% if not is_granted('ROLE_USER') %}
+		<section class="warning">
+			<header class="warning-header"><h1 class="warning-header-inner">UWAGA</h1></header>
+			<div class="warning-content">
+				<i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i>
+				<h2>Musisz być zalogowany aby zobaczyć tę stronę</h2>
+				<a class="warning-option" href="{{ path('fos_user_security_login') }}">LOGOWANIE</a>
+				<a class="warning-option" href="{{ path('fos_user_registration_register') }}">REJESTRACJA</a>
+			</div>
+		</section>
+	{% endif %}
+	{% if is_granted('ROLE_USER') %}
+		<section id="orders">
+			<header id="orders-header"><h2 id="orders-header-inner">TWOJE FILMY</h2></header>
+				<div class="desc-outer">
+				<div class="desc-id">LP</div>
+				<div class="desc-time">Tytuł</div>
+				<div class="desc-realized">Kraj</div>
+				<div class="desc-status">Rok produkcji</div>
+				<div class="desc-details">OGLĄDAJ</div>
+			</div>
+			{% for order in orders %}
+				{% for movie in order.movies %}
+					<article class="order">
+						<div class="order-id">
+							{{ count }}
+						</div>
+						<div class="order-time">
+							{{ movie.name }}
+						</div>
+						<div class="order-realized">
+							{{ movie.countryProduction }}
+						</div>
+						<div class="order-status">
+							{{ movie.productionYear }}
+						</div>
+						<div class="order-details">
+							<a href="{{ path('grupa_video_net_film_watch', {'id': movie.id }) }}">OGLĄDAJ</a>
+						</div>
+					</article>
+					{% set count = count + 1 %}
+				{% endfor %}
+			{% endfor %}
+		</section>
+	{% endif %}
+{% endblock %}
