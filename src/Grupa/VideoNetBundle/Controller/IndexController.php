@@ -4,6 +4,7 @@ namespace Grupa\VideoNetBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
@@ -11,7 +12,14 @@ class IndexController extends Controller
 {
     public function indexAction() {
 		$link = $_SERVER["SCRIPT_NAME"];
-
+		$session = new Session();
+		
+		$path = $session->get('path');
+		
+		if($path == 1) {
+			return $this->redirect($this->generateUrl('grupa_video_net_cart'));
+		}
+		
 		$em = $this->getDoctrine()->getManager();
 		$lastAdded = $em->getRepository('GrupaVideoNetBundle:Movie')->findBy(
 			array(),

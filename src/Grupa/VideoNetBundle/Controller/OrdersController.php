@@ -110,6 +110,13 @@ class OrdersController extends Controller {
 			$items = null;
 		}
 		
+		$path = $session->get('path');
+		if(empty($path)) {
+			$session->set('path', 1);
+		} else {
+			$session->set('path', 0);
+		}
+		
 		return $this->render(
 			'GrupaVideoNetBundle:Orders:cart.html.twig',
 			array(
@@ -131,15 +138,20 @@ class OrdersController extends Controller {
 				$session->set('cart', $cart);
 			}
 			$response = "";
+			$counter = "";
 			$cart = $session->get('cart');
 			$movie_id = $this->get('request')->request->get('movie_id');
 			$movie_name = $this->get('request')->request->get('movie_name');
 			if (in_array($movie_id, $cart)) {
-				$response = array("status" => 0, "link" => $link);
+				$cart = $session->get("cart");
+				$counter = count($cart);
+				$response = array("status" => 0, "link" => $link, "counter" => $counter);
 			} else {
 				$cart[] = $movie_id;
 				$session->set('cart', $cart);
-				$response = array("status" => 1, "link" => $link);
+				$cart = $session->get("cart");
+				$counter = count($cart);
+				$response = array("status" => 1, "link" => $link, "counter" => $counter);
 			}
 		}
 		return new JsonResponse($response); 

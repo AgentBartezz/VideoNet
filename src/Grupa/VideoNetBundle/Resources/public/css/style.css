@@ -77,6 +77,32 @@ h2, h3, h4, h5 {
 	font-family:"Play";
 }
 
+.paginate {
+	float:right;
+	margin:30px 0 30px 10px;
+}
+
+.paginator {
+	display:inline-block;
+	height:50px;
+	text-align:center;
+	color:#00ffff;
+	padding-top:13px;
+	width:200px;
+	font-size:20px;
+	text-decoration:none;
+	background:#00006f;
+}
+
+.paginator:hover {
+	background:#00008f;
+}
+
+.paginator:active:hover {
+	background:#00ffff;
+	color:#00002f;
+}
+
 #superhit-inner {
 	width:100%;
 	position:relative;
@@ -870,6 +896,7 @@ input#password:focus {
 .slider-hits-image {
 	height:100%;
 	width:auto;
+	float:right;
 }
 
 .slider-hits-link {
@@ -939,6 +966,7 @@ input#password:focus {
 .slider-top-image {
 	height:100%;
 	width:auto;
+	float:right;
 }
 
 .slider-top-link {
@@ -2089,7 +2117,7 @@ input#password:focus {
 }
 
 #view-movie-image img {
-	height:200px;
+	width:200px;
 }
 
 #view-movie-details {
