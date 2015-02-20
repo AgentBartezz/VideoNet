@@ -92,9 +92,9 @@ class Movie
     protected $movieBigFoto = "defaultBig.png";
 	
 	/**
-     * @ORM\Column(type="string", length=200, name="movie_video", nullable=true )
+     * @ORM\Column(type="string", length=200, name="movie_video", options = {"default" = "http://v-ie.uek.krakow.pl/~s176041/movies/default.mp4"} )
      */
-    protected $movieVideo;
+    protected $movieVideo = "http://v-ie.uek.krakow.pl/~s176041/movies/default.mp4";
 	
 	/**
      * @ORM\Column(type="integer", nullable=true )
