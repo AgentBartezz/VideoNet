@@ -48,7 +48,7 @@
 					<footer class="movie-info-footer">
 						Cena: {{ movie.price }} zł
 						<a class="movie-more" href="{{ link }}/film/view/{{ movie.id }}">WIĘCEJ..</a>
-						<button class="add-to-cart-btn" data-id="{{ movie.id }}" data-name="{{ movie.name }}">DO KOSZYKA</button>	
+						<button class="add-to-cart-btn" data-id="{{ movie.id }}" data-name="{{ movie.name }}" data-path="{{ path('grupa_video_net_cart') }}">DO KOSZYKA</button>	
 					</footer>
 				</div>
 			</article>
@@ -56,8 +56,8 @@
 	</section>
 	<div class="paginate">
 		{% if page > 1 %}
-			<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page - 1 }}">POPRZEDNIA STRONA</a>
+			<a class="paginator" href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page - 1 }}">POPRZEDNIA STRONA</a>
 		{% endif %}
-		<a href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page + 1 }}">NASTĘPNA STRONA</a>
+		<a class="paginator" href="{{ link }}/films/{{ category }}/{{ sort }}/{{ direction }}/{{ page + 1 }}">NASTĘPNA STRONA</a>
 	</div>
 {% endblock %}

@@ -49,7 +49,7 @@
 				<div id="view-movie-price">
 					Cena: <span class="vm-price">{{ movie.price }} zł</span>
 				</div>
-				<button class="add-to-cart-btn" data-id="{{ movie.id }}" data-name="{{ movie.name }}">DO KOSZYKA</button>
+				<button class="add-to-cart-btn" data-id="{{ movie.id }}" data-name="{{ movie.name }}" data-path="{{ path('grupa_video_net_cart') }}">DO KOSZYKA</button>
 			</div>
 			<div id="view-movie-description">
 				{{ movie.description }}
@@ -64,6 +64,7 @@
 			{% endif %}
 			{% set reviewUser = 0 %}
 			{% for review in reviews %}
+				{% if review.status == 1 %}
 				<article class="view-movie-review" style="margin-bottom:5px;">
 					<div class="view-movie-review-author-avatar">
 						<img class="view-movie-avatar" src="{{ link_avatars }}{{ review.user.avatar }}"/>
@@ -81,6 +82,7 @@
 					{% if review.user.id == app.user.id %}
 						{% set reviewUser = 1 %}
 					{% endif %}
+				{% endif %}
 				{% endif %}
 			{% endfor %}
 			

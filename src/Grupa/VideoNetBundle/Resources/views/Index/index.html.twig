@@ -18,14 +18,14 @@
 					{% for movie in lastAdded %}
 					<a class="slider-news-link" style="display:none" href="{{ path('grupa_video_net_films_view', {'id': movie.id}) }}">
 						<div class="slider-movie-details">{{ movie.name }} ({{ movie.productionYear }})</div>
-						<img class="slider-news-image" src="{{ asset('images/movies/' ~ movie.movieBigFoto ~'') }}"/>
+						<img class="slider-news-image" src="{{ link_movies }}{{ movie.movieBigFoto }}"/>
 					</a>
 					{% endfor %}
 				</div>
 				<div id="slider-news-jumpers">
 					{% for movie in lastAdded %}
 					<button class="slider-news-jumper">
-						<img class="slider-news-jumper-image" src="{{ asset('images/movies/' ~ movie.movieFoto ~'') }}"/>
+						<img class="slider-news-jumper-image" src="{{ link_movies }}{{ movie.movieFoto }}"/>
 					</button>
 					{% endfor %}
 				</div>
@@ -43,14 +43,14 @@
 						{% for movie in mostPurchased %}
 						<a class="slider-hits-link" style="display:none" href="{{ path('grupa_video_net_films_view', {'id': movie.mov.id }) }}">
 							<div class="slider-movie-details">{{ movie.mov.name }} ({{ movie.mov.productionYear }})</div>
-							<img class="slider-hits-image" src="{{ asset('images/movies/' ~ movie.mov.movieBigFoto ~'') }}"/>
+							<img class="slider-hits-image" src="{{ link_movies }}{{ movie.mov.movieBigFoto }}"/>
 						</a>
 						{% endfor %}
 					</div>
 					<div id="slider-hits-jumpers">
 						{% for movie in mostPurchased %}
 						<button class="slider-hits-jumper">
-							<img class="slider-news-jumper-image" src="{{ asset('images/movies/' ~ movie.mov.movieFoto ~'') }}"/>
+							<img class="slider-news-jumper-image" src="{{ link_movies }}{{ movie.mov.movieFoto }}"/>
 						</button>
 						{% endfor %}
 					</div>
@@ -67,7 +67,7 @@
 						{% for movie in mostRev %}
 						<a class="slider-top-link" style="display:none" href="{{ path('grupa_video_net_films_view', {'id': movie.rev.movie.id }) }}">
 							<div class="slider-movie-details">{{ movie.rev.movie.name }} ({{ movie.rev.movie.productionYear }})</div>
-							<img class="slider-top-image" src="{{ asset('images/movies/' ~ movie.rev.movie.movieBigFoto ~'') }}"/>
+							<img class="slider-top-image" src="{{ link_movies }}{{ movie.rev.movie.movieBigFoto }}"/>
 						</a>
 						{% endfor %}
 						
@@ -75,7 +75,7 @@
 					<div id="slider-top-jumpers">
 						{% for movie in mostRev %}
 						<button class="slider-top-jumper">
-							<img class="slider-news-jumper-image" src="{{ asset('images/movies/' ~ movie.rev.movie.movieFoto ~'') }}"/>
+							<img class="slider-news-jumper-image" src="{{ link_movies }}{{ movie.rev.movie.movieFoto }}"/>
 						</button>
 						{% endfor %}
 					</div>
