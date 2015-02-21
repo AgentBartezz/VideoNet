@@ -2789,7 +2789,31 @@ input#password:focus {
 	.post-author-info .movie-meter-outer {
 		display:none;
 	}
-
+	
+	#view-movie-image {
+		float:none;
+		width:100%;
+	}
+	
+	#view-movie-details {
+		width:100%;
+		float:none;
+	}
+	
+	.details-names {
+		width:60%;
+	}
+	
+	.details-values {
+		width:40%;
+	}
+	
+	#view-movie-details2 {
+		width: 100%;
+		float: left;
+		margin-top: -60px;
+		margin-bottom: 20px;
+	}
 }
 
 
