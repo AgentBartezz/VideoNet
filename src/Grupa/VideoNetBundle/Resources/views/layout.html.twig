@@ -1,3 +1,4 @@
+{% set link_avatars = "http://v-ie.uek.krakow.pl/~s176041/images/avatars/" %}
 <!DOCTYPE html> 
 <html lang="pl">
 	<head>
@@ -36,7 +37,7 @@
 		<header role="banner" id="bars" class="relative expanded-1">
 			<div id="top-bar" class="expanded-2">
 				<div id="top-bar-inner">
-					<div id="toggle-menu"><i class=" glyphicon glyphicon-th-list" aria-hidden="true"></i></div>
+					<div class="toggle-menu"><hr><br><hr><br><hr></div>
 					<img id="logo" src="{{ asset('images/logo.png') }}" alt="logoo"/>
 					<nav id="menu" role="navigation" class="collapsed-3">
 						<h6>Nawigacja</h6>
@@ -48,6 +49,16 @@
 							<li class="menu-item{{ kontakt_active }}"><a href="{{ path('grupa_video_net_contact') }}" class="expanded-2" title="kontakt"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><span>KONTAKT</span></a></li>
 						</ul>
 					</nav>
+					{% if not is_granted('ROLE_USER') %}
+						<button class="mobile-toggle-user account-popup-hidden">
+							<i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+						</button>
+					{% endif %}
+					{% if is_granted('ROLE_USER') %}
+						<button class="mobile-toggle-user dropdown">
+							<i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+						</button>
+					{% endif %}
 				</div>
 			</div>
 			<div id="bottom-bar">
@@ -70,6 +81,7 @@
 		</header>
 		</div>
 		<div id="overlay" style="display:none">
+			{% if not is_granted('ROLE_USER') %}
 			<section id="account-popup" class="col">
 				<header class="popup-header">
 					<h2 class="popup-header-inner">LOGOWANIE<h2>
@@ -93,6 +105,7 @@
 							<label for="remember_me" style="display:inline-block; width:auto; padding-left:5px; ">Zapamiętaj moje dane</label>
 							<input type="submit" id="_submit" name="_submit" value="ZALOGUJ SIĘ" />
 						</form>
+						<a href="{{ path('fos_user_registration_register')}}" class="register-submit linked">REJESTRACJA</a>
 					</section>
 					<section id="fastreg-popup-form" class="absolute" style="display:none">
 						rejestracja
@@ -103,6 +116,7 @@
 					</section>
 				</div>
 			</section>
+			{% endif %}
 		</div>
 		<main id ="wrapper" role="main">
 			<div id="container">

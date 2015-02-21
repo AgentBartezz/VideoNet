@@ -91,9 +91,9 @@ class OrdersController extends Controller {
 		);
 	}
 	
-	public function cartAction() {
+	public function cartAction(Request $request) {
 		$link = $_SERVER["SCRIPT_NAME"];
-		$session = new Session();
+		$session = $request->getSession();
 		
 		$cart = $session->get('cart');
 		

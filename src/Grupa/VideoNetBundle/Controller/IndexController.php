@@ -10,9 +10,9 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
 class IndexController extends Controller
 {
-    public function indexAction() {
+    public function indexAction(Request $request) {
 		$link = $_SERVER["SCRIPT_NAME"];
-		$session = new Session();
+		$session = $request->getSession();
 		
 		$path = $session->get('path');
 		

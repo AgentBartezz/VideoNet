@@ -25,7 +25,7 @@
 				<div id="slider-news-jumpers">
 					{% for movie in lastAdded %}
 					<button class="slider-news-jumper">
-						<img class="slider-news-jumper-image" src="{{ link_movies }}{{ movie.movieFoto }}"/>
+						<img class="slider-news-jumper-image no-mobile" src="{{ link_movies }}{{ movie.movieFoto }}"/>
 					</button>
 					{% endfor %}
 				</div>
@@ -100,7 +100,7 @@
 					<article class="jump-to-trailer-outer"><div class="jump-to-trailer" data-src="{{ trailers.trailer3 }}">20-12-2014<br>Hobbit - Bitwa pięciu armii (zwiastun 3)</div><button class="mobile-jump-to-trailer" data-src="{{ trailers.trailer3 }}"><i class=" glyphicon glyphicon-play" aria-hidden="true"></i></button></article>
 					<article class="jump-to-trailer-outer"><div class="jump-to-trailer" data-src="{{ trailers.trailer4 }}">19-12-2014<br>Uprowadzona 3 (zwiastun 1)</div><button class="mobile-jump-to-trailer" data-src="{{ trailers.trailer4 }}"><i class=" glyphicon glyphicon-play" aria-hidden="true"></i></button></article>
 				</div>
-				<footer id="trailers-footer"><a href="films/trailers" id="trailers-footer-content">ZOBACZ WIĘCEJ...</a></footer>
+				<footer id="trailers-footer"><a href="{{ path('grupa_video_net_films', { 'category' : 'trailers'}) }}" id="trailers-footer-content">ZOBACZ WIĘCEJ...</a></footer>
 			</section>
 		</article>
 	</section>
@@ -163,6 +163,6 @@
 			</article>
 		</div>
 	</div>
-	<footer id="last-posts-footer"><a href="forum" id="last-posts-footer-content">ZOBACZ WIĘCEJ...</a></footer>
+	<footer id="last-posts-footer"><a href="{{ path('grupa_video_net_forum') }}" id="last-posts-footer-content">ZOBACZ WIĘCEJ...</a></footer>
 </aside>
 {% endblock %}
