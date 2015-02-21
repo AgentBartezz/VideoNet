@@ -15,7 +15,7 @@ class QuickReplyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('content');
+        $builder->add('content', 'textarea');
 	}	
     
     /**

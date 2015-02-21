@@ -17,6 +17,8 @@ $(window).scroll(function() {
 
 function loginForm() {
 	var scroll = $(window).scrollTop();
+	var w = $(window).width();
+	if(w > 768) {
 	if($("#account-popup").is(":visible")) {
 		if(scroll >= 200) {	
 			$("#account-popup").removeAttr("style");
@@ -30,6 +32,7 @@ function loginForm() {
 	if(b < 700) {
 		$("#account-popup").css("top", 340-scroll);	
 	}
+	}
 }
 
 $(window).load(function() {
@@ -39,8 +42,9 @@ $(window).load(function() {
 	$(".slider-news-jumper").first().attr("disabled", "disabled");
 	$(".slider-top-jumper").first().attr("disabled", "disabled");
 	$(".slider-hits-jumper").first().attr("disabled", "disabled");
-	$("#toggle-menu").click(function() {
+	$(".toggle-menu").click(function() {
 		$("#menu").toggleClass("collapsed-3").toggleClass("expanded-3");
+		$(this).toggleClass("menu-expanded");
 	});
 	
 	$(".dropdown").click(function() {
@@ -99,6 +103,16 @@ $(window).load(function() {
 		$("#trailers-container").append("<video class='trailer-player' width='100%' height='100%' controls><source class='trailer-player-source' src='" + s + "' type='video/mp4'></video>");
 		$(this).closest("#slider-trailers").find(".jump-to-trailer").removeClass("active");
 		$(this).addClass("active");
+	});
+	
+	$(".mobile-jump-to-trailer").click(function() {
+		var video = $(this).attr("data-src");
+		$("#overlay").fadeIn(400).append("<video class='trailer-player' width='100%' height='50%' controls><source class='trailer-player-source' src='" + video + "' type='video/mp4'></video><button class='video-mobile-close'>ZAMKNIJ</button>");
+	});
+	
+	$("body").on("click" ,".video-mobile-close", function() {
+		$("#overlay").fadeOut(400).find(".trailer-player").remove();
+		$(this).remove();
 	});
 	
 	$("#news-prev").click(function() {
